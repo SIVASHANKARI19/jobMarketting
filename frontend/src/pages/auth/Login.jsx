@@ -1,24 +1,19 @@
-import React, { useState } from 'react';
+import  { useState } from "react";
 import { useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import {
-  TextField,
-  IconButton,
-  InputAdornment,
-} from '@mui/material';
+import { TextField, IconButton, InputAdornment } from "@mui/material";
 import { FaUser, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
-import GoogleIcon from '@mui/icons-material/Google';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import GitHubIcon from '@mui/icons-material/GitHub';
+import GoogleIcon from "@mui/icons-material/Google";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import GitHubIcon from "@mui/icons-material/GitHub";
 import loginImg from "../../assets/login.png";
-
 const Login = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
-    username: '',
-    password: ''
+    username: "",
+    password: "",
   });
 
   const loginGoogle = useGoogleLogin({
@@ -46,7 +41,7 @@ const Login = () => {
   const handleInputChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -64,113 +59,123 @@ const Login = () => {
   };
 
   return (
-    <div className="max-  flex items-center justify-center  p-4">
-      <div className="flex flex-col md:flex-row bg-white rounded-xl shadow-lg overflow-hidden w-full max-w-6xl">
+    <div className=" max-h-screen px-6 flex items-center justify-center">
+      <div className="flex flex-col md:flex-row bg-white rounded-xl p-9 shadow-lg overflow-hidden gap-10">
         {/* Left - Form */}
-        <div className="flex flex-col justify-center flex-1 p-8 md:p-16">
-          <h2 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#0077b5] to-[#005983] mb-2">
-            Welcome Back
-          </h2>
+        <div className="flex flex-col  flex-1 w-120 p-3 ">
+          <h1 className="text-4xl font-medium mb-6 text-gray-500 w-1.5xl text-left">
+            Welcome to your professional community
+          </h1>
+
           <p className="text-gray-500 mb-8">Sign in to your account</p>
-
           <form onSubmit={handleLogin} className="space-y-6">
-<div className='flex flex-col gap-8.5'>
-            <TextField
-              fullWidth
-              name="username"
-              label="Username"
-              variant="outlined"
-              value={formData.username}
-              onChange={handleInputChange}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <FaUser className="text-gray-400" />
-                  </InputAdornment>
-                ),
-              }}
-            />
-
-            <TextField
-              fullWidth
-              name="password"
-              label="Password"
-              type={showPassword ? 'text' : 'password'}
-              variant="outlined"
-              value={formData.password}
-              onChange={handleInputChange}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <FaLock className="text-gray-400" />
-                  </InputAdornment>
-                ),
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
-                      {showPassword ? <FaEyeSlash /> : <FaEye />}
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
-            />
-</div>
-            <div className="flex justify-end">
-              <a href="#" className="text-[#0077b5] text-sm hover:underline">Forgot Password?</a>
+            <div className="flex flex-col gap-8.5">
+              <TextField
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    borderRadius: "8px",
+                  },
+                }}
+                name="username"
+                label="Username"
+                variant="outlined"
+                size="small"
+                value={formData.username}
+                onChange={handleInputChange}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <FaUser className="text-gray-400" />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+              <TextField
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    borderRadius: "8px",
+                  },
+                }}
+                size="small"
+                name="password"
+                label="Password"
+                type={showPassword ? "text" : "password"}
+                variant="outlined"
+                value={formData.password}
+                onChange={handleInputChange}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <FaLock className="text-gray-400" />
+                    </InputAdornment>
+                  ),
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        onClick={() => setShowPassword(!showPassword)}
+                        edge="end"
+                      >
+                        {showPassword ? <FaEyeSlash /> : <FaEye />}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+              />
             </div>
-
+            <div className="flex justify-end">
+              <a href="#" className="text-[#0077b5] text-sm hover:underline">
+                Forgot Password?
+              </a>
+            </div>
             <button
               type="submit"
-              className="w-full py-3 bg-[#0077b5] hover:bg-[#005983] text-white rounded-md font-semibold transition-colors"
+              className="w-full   py-2 bg-[#0077b5] hover:bg-[#005983] text-white rounded-md font-semibold transition-colors"
             >
               Sign In
             </button>
           </form>
-
-
           <div className="flex items-center my-6">
             <div className="flex-grow border-t border-gray-300"></div>
             <span className="mx-4 text-gray-500">or continue with</span>
             <div className="flex-grow border-t border-gray-300"></div>
           </div>
-
           <div className="flex justify-center space-x-4">
             <IconButton
               onClick={loginGoogle}
               className="!w-14 !h-14 border border-gray-300 bg-white hover:bg-gray-100 transition"
             >
-              <GoogleIcon sx={{ color: '#db4437', fontSize: 28 }} />
+              <GoogleIcon sx={{ color: "#db4437", fontSize: 28 }} />
             </IconButton>
 
             <IconButton
               onClick={handleLinkedInLogin}
               className="!w-14 !h-14 border border-[#0077b5] bg-white hover:bg-[#e6f4f9] transition"
             >
-              <LinkedInIcon sx={{ color: '#0077b5', fontSize: 28 }} />
+              <LinkedInIcon sx={{ color: "#0077b5", fontSize: 28 }} />
             </IconButton>
 
             <IconButton
               onClick={handleGitHubLogin}
               className="!w-14 !h-14 border border-gray-300 bg-white hover:bg-gray-100 transition"
             >
-              <GitHubIcon sx={{ color: '#333', fontSize: 28 }} />
+              <GitHubIcon sx={{ color: "#333", fontSize: 28 }} />
             </IconButton>
           </div>
 
           <p className="text-center text-gray-500 mt-6">
-            Don't have an account?{' '}
-            <a href="#" className="text-[#0077b5] font-semibold hover:underline">Sign up</a>
+            Don't have an account?{" "}
+            <a
+              href="#"
+              className="text-[#0077b5] font-semibold hover:underline"
+            >
+              Sign up
+            </a>
           </p>
         </div>
 
         {/* Right - Image */}
-        <div className="hidden md:flex flex-1">
-          <img
-            src={loginImg}
-            alt="Login"
-              height={100}
-              width={500}
-          />
+        <div className="">
+          <img src={loginImg} alt="Login" height={200} width={600} />
         </div>
       </div>
     </div>
