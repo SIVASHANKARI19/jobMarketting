@@ -7,7 +7,7 @@ import { FaUser, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
 import GoogleIcon from "@mui/icons-material/Google";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import GitHubIcon from "@mui/icons-material/GitHub";
-import loginImg from "../../assets/login.png";
+import loginImg from "../../assets/login.jpg";
 const Login = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
