@@ -14,7 +14,6 @@ const [activeStep, setActiveStep] = useState(() => {
 }, [activeStep]);
   const [userType, setUserType] = useState("");
   const [formData, setFormData] = useState({
-    // Basic Info
     firstName: "",
     lastName: "",
     email: "",
