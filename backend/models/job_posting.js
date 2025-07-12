@@ -14,12 +14,13 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Job_Posting.init({
+    job_id: DataTypes.UUID,
     title: DataTypes.STRING,
     company: DataTypes.STRING,
     location: DataTypes.STRING,
     salary_min: DataTypes.INTEGER,
     salary_max: DataTypes.INTEGER,
-    skills_required: DataTypes.ARRAY,
+    skills_required: DataTypes.ARRAY(DataTypes.STRING),
     industry: DataTypes.STRING,
     post_date: DataTypes.DATE
   }, {
