@@ -2,6 +2,8 @@ import { useRef } from "react";
 import jobimg from "../../assets/jobRole.jpg";
 import TopNavbar from "../../components/TopNavBar/TopNavBar";
 import SmallCard from "../../components/smallCard";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import JobCard from '../../components/Card'
 
 const Dashboard = () => {
   const scrollRef = useRef(null);
@@ -103,7 +105,7 @@ const Dashboard = () => {
       </div>
       <div className="absolute top-[10%] w-full">
         {/* Scroll buttons */}
-        {/* <button
+        <button
           onClick={() => scroll("left")}
           className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white shadow p-2 rounded-full z-10"
         >
@@ -115,14 +117,14 @@ const Dashboard = () => {
           className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white shadow p-2 rounded-full z-10"
         >
           <FaArrowRight />
-        </button> */}
+        </button>
 
         {/* Cards container */}
         <div
           ref={scrollRef}
           className="flex flex-nowrap overflow-x-scroll gap-4 px-10 hide-scrollbar scroll-smooth"
         >
-          {/* {jobs.map((job, index) => (
+          {jobs.map((job, index) => (
             <div key={index} className="flex-shrink-0">
               <JobCard
                 title={job.title}
@@ -133,8 +135,8 @@ const Dashboard = () => {
                 onKnowMore={job.onKnowMore}
               />
             </div>
-          ))} */}
-          <SmallCard />
+          ))}
+          {/* <SmallCard /> */}
         </div>
       </div>
     </div>
