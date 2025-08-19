@@ -1,8 +1,8 @@
 import React from 'react';
 import { Target, Users, Award, Zap, Heart, Globe } from 'lucide-react';
 
-const AboutUsPage = () => {
-   const teamMembers = [
+const AboutUsPage: React.FC = () => {
+  const teamMembers = [
     {
       name: 'Sarah Johnson',
       role: 'CEO & Founder',
