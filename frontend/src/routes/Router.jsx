@@ -1,28 +1,42 @@
-import Login from "../pages/auth/Login";
-import Register from "../pages/auth/Register";
-import DashBoard from "../pages/client/DashBoard";
-import Home from "../pages/Home";
-const router=[{
-    path:'/',
-    element:<Home/>
-},{
-    path:'/register',
-    element:<Register/>
-},{
-    path:'/dashboard',
-    element:<DashBoard />
-},
- {
-    path: '/',
-    element: (
-      <MainLayout
-        currentUser={currentUser}
-        onRoleChange={handleRoleChange}
-        onLogout={handleLogout}
-      >
-        <Home />
-      </MainLayout>
+import { Navigate } from "react-router-dom";
+import LoginPage from "../pages/auth/Login";
+import RegisterPage from "../pages/auth/Register";
+import FeedPage from "../pages/Feed";
+import AdminDashboard from "../pages/AdminDashboard";
+import HomePage from "../pages/Home"; // ✅ import your real homepage
+
+const router = (isAuthenticated, currentUser, handleLogin) => [
+  {
+    path: "/",
+    element: !isAuthenticated ? <HomePage /> : <Navigate to="/feed" />,
+  },
+  {
+    path: "/register",
+    element: !isAuthenticated ? (
+      <RegisterPage onLogin={handleLogin} />
+    ) : (
+      <Navigate to="/feed" />
     ),
   },
-]
+  {
+    path: "/login",
+    element: !isAuthenticated ? (
+      <LoginPage onLogin={handleLogin} />
+    ) : (
+      <Navigate to="/feed" />
+    ),
+  },
+  ...(isAuthenticated
+    ? [
+        { path: "/feed", element: <FeedPage /> },
+
+        ...(currentUser?.role === "admin"
+          ? [{ path: "/admin-dashboard", element: <AdminDashboard /> }]
+          : []),
+
+        { path: "*", element: <Navigate to="/feed" /> },
+      ]
+    : [{ path: "*", element: <Navigate to="/" /> }]),
+];
+
 export default router;

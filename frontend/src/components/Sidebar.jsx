@@ -1,22 +1,11 @@
-import React from 'react';
+
 import { Link, useLocation } from 'react-router-dom';
 import {
   Home,
-  User,
-  BookmarkIcon,
-  FileText,
-  Bell,
-  Building,
-  PlusCircle,
-  Users,
   BarChart3,
-  Shield,
   Mail,
   Info,
   FileCheck,
-  TrendingUp,
-  Award,
-  Settings,
 } from 'lucide-react';
 
 const Sidebar = ({ currentUser }) => {
@@ -26,26 +15,14 @@ const Sidebar = ({ currentUser }) => {
     if (currentUser?.role === 'jobseeker') {
       return [
         { path: '/feed', icon: Home, label: 'Job Feed' },
-        { path: '/profile', icon: User, label: 'Profile' },
-        { path: '/saved-jobs', icon: BookmarkIcon, label: 'Saved Jobs' },
-        { path: '/applied-jobs', icon: FileText, label: 'Applied Jobs' },
-        { path: '/notifications', icon: Bell, label: 'Notifications' },
       ];
     } else if (currentUser?.role === 'client') {
       return [
         { path: '/feed', icon: Home, label: 'Dashboard' },
-        { path: '/post-job', icon: PlusCircle, label: 'Post Job' },
-        { path: '/my-jobs', icon: FileText, label: 'My Jobs' },
-        { path: '/applicants', icon: Users, label: 'Applicants' },
-        { path: '/profile', icon: User, label: 'Profile' },
-        { path: '/notifications', icon: Bell, label: 'Notifications' },
       ];
     } else if (currentUser?.role === 'admin') {
       return [
         { path: '/admin-dashboard', icon: BarChart3, label: 'Dashboard' },
-        { path: '/manage-users', icon: Users, label: 'Manage Users' },
-        { path: '/manage-jobs', icon: FileText, label: 'Manage Jobs' },
-        { path: '/reports', icon: BarChart3, label: 'Reports' },
       ];
     }
 
