@@ -1,7 +1,7 @@
 import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
 import DashBoard from "../pages/client/DashBoard";
-import SkillGapAnalyzer from "../pages/skillGapAnalyser/SkillGapAnalyzer";
+import SkillGapAnalyzer from "../pages/skillGapAnalyser/skill_gap";
 const router=[{
     path:'/',
     element:<Login/>
