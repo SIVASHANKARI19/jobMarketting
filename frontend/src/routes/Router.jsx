@@ -4,6 +4,9 @@ import RegisterPage from "../pages/auth/Register";
 import FeedPage from "../pages/Feed";
 import AdminDashboard from "../pages/AdminDashboard";
 import HomePage from "../pages/Home"; // ✅ import your real homepage
+import ContactUsPage from "../pages/ContactUsPage";
+import AboutUsPage from "../pages/AboutUsPage";
+import TermsPage from "../pages/TermsPage";
 
 const router = (isAuthenticated, currentUser, handleLogin) => [
   {
@@ -28,7 +31,17 @@ const router = (isAuthenticated, currentUser, handleLogin) => [
   },
   ...(isAuthenticated
     ? [
-        { path: "/feed", element: <FeedPage /> },
+        { path: "/feed", element: <FeedPage /> ,
+        },
+        {
+          path:"/contact",element:<ContactUsPage/>
+        },
+        {
+ path:"/about",element:<AboutUsPage/>
+        },
+        {
+           path:"/terms",element:<TermsPage/>
+        },
 
         ...(currentUser?.role === "admin"
           ? [{ path: "/admin-dashboard", element: <AdminDashboard /> }]
