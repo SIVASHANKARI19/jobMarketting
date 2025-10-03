@@ -1,6 +1,6 @@
 "use strict";
 const { Model } = require("sequelize");
-module.exports = (sequelize, DataTypes) => {
+module.exports =  async(sequelize, DataTypes) => {
   class User extends Model {
     /**
      * Helper method for defining associations.
@@ -13,7 +13,6 @@ module.exports = (sequelize, DataTypes) => {
   }
   User.init(
     {
-      user_id: DataTypes.UUID,
       name: DataTypes.STRING,
       email: DataTypes.STRING,
       password_hash: DataTypes.STRING,
@@ -21,6 +20,12 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.ENUM("job_seeker", "employer", "analyst"),
         allowNull: false,
       },
+      skillset: DataTypes.ARRAY(DataTypes.STRING),
+      experience: DataTypes.INTEGER,
+      location: DataTypes.STRING,
+      education: DataTypes.STRING,
+      profileCompletion: DataTypes.FLOAT,
+      avatar: DataTypes.STRING,
       registered_on: DataTypes.NOW,
     },
     {
@@ -28,5 +33,7 @@ module.exports = (sequelize, DataTypes) => {
       modelName: "User",
     }
   );
+
+  await sequelize.sync({ alter: true });
   return User;
 };
