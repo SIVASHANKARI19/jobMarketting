@@ -146,30 +146,7 @@ const ContactUsPage = () => {
               </div>
             </div>
 
-            {/* Business Hours */}
-            <div className="bg-white rounded-lg shadow-sm p-6">
-              <h2 className="text-xl font-semibold text-gray-800 mb-4">Business Hours</h2>
-              <div className="space-y-3">
-                <div className="flex items-center justify-between">
-                  <span className="text-gray-700">Monday - Friday</span>
-                  <span className="text-gray-600">9:00 AM - 6:00 PM</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-gray-700">Saturday</span>
-                  <span className="text-gray-600">10:00 AM - 2:00 PM</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-gray-700">Sunday</span>
-                  <span className="text-gray-600">Closed</span>
-                </div>
-              </div>
-              <div className="mt-4 p-3 bg-blue-50 rounded-lg">
-                <div className="flex items-center">
-                  <Clock className="w-4 h-4 text-blue-600 mr-2" />
-                  <span className="text-sm text-blue-800">We typically respond within 24 hours</span>
-                </div>
-              </div>
-            </div>
+           
 
             {/* FAQ Link */}
             <div className="bg-white rounded-lg shadow-sm p-6">
@@ -194,19 +171,7 @@ const ContactUsPage = () => {
           </div>
         </div>
 
-        {/* Map Placeholder */}
-        <div className="bg-white rounded-lg shadow-sm p-6 mt-8">
-          <h2 className="text-xl font-semibold text-gray-800 mb-4">Find Us</h2>
-          <div className="h-64 bg-gray-100 rounded-lg flex items-center justify-center">
-            <div className="text-center">
-              <MapPin className="w-16 h-16 text-gray-300 mx-auto mb-2" />
-              <p className="text-gray-500">Interactive map placeholder</p>
-              <p className="text-sm text-gray-400">
-                123 Tech Street, Koramangala, Bangalore, Karnataka 560034
-              </p>
-            </div>
-          </div>
-        </div>
+     
       </div>
     </div>
   );
