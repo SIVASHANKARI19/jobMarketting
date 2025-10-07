@@ -3,7 +3,7 @@ import LoginPage from "../pages/auth/Login";
 import RegisterPage from "../pages/auth/Register";
 import FeedPage from "../pages/Feed";
 import AdminDashboard from "../pages/AdminDashboard";
-import HomePage from "../pages/Home"; // ✅ import your real homepage
+import HomePage from "../pages/Home";
 
 const router = (isAuthenticated, currentUser, handleLogin) => [
   {

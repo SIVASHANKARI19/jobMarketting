@@ -4,5 +4,6 @@ const controller = require("../controllers/user.controller");
 
 router.post("/", controller.createUser); // POST /api/users
 router.get("/", controller.getUsers); // GET  /api/users
+router.post("/login",controller.loginUser);
 
 module.exports = router;

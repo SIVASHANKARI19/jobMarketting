@@ -19,7 +19,7 @@ const LoginPage = ({ onLogin }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const { email, password } = formData;
-
+    console.log(email, password);
     const user = Object.values(credentials).find(
       cred => cred.email === email && cred.password === password
     );

@@ -26,7 +26,16 @@ module.exports =  async(sequelize, DataTypes) => {
       education: DataTypes.STRING,
       profileCompletion: DataTypes.FLOAT,
       avatar: DataTypes.STRING,
-      registered_on: DataTypes.NOW,
+      registered_on: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: DataTypes.NOW,
+      },
+      profile_completion: {
+        type: DataTypes.FLOAT,
+        allowNull: false,
+        defaultValue: 0,
+      },
     },
     {
       sequelize,
