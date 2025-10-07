@@ -14,8 +14,5 @@ const router=[{
 },{
     path:'/dashboard',
     element:<DashBoard />
-},{
-    path: '/jobfeed',
-    element: <JobFeed/>
-}]
+},]
 export default router;

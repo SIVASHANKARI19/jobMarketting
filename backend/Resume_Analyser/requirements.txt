@@ -1,0 +1,5 @@
+pdfminer.six==20231228
+pyyaml==6.0.2
+click==8.1.7
+rapidfuzz==3.9.7
+Flask==3.0.3
