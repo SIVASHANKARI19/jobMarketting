@@ -5,6 +5,7 @@ import FeedPage from "../pages/Feed";
 import SkillGapAnalyzer from "../pages/skillGapAnalyser/skill_gap";
 import AdminDashboard from "../pages/AdminDashboard";
 import HomePage from "../pages/Home"; // ✅ import your real homepage
+import JobTrendsPage from "../components/JobTrends/JobTrendsPage";
 
 const router = (isAuthenticated, currentUser, handleLogin) => [
   {
@@ -42,6 +43,11 @@ const router = (isAuthenticated, currentUser, handleLogin) => [
         { path: "*", element: <Navigate to="/feed" /> },
       ]
     : [{ path: "*", element: <Navigate to="/" /> }]),
+ 
+  {
+    path: '/job-trends',
+    element: <JobTrendsPage />,
+  },
 ];
 
 export default router;

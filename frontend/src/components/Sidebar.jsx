@@ -15,6 +15,7 @@ const Sidebar = ({ currentUser }) => {
     if (currentUser?.role === 'jobseeker') {
       return [
         { path: '/feed', icon: Home, label: 'Job Feed' },
+
       ];
     } else if (currentUser?.role === 'client') {
       return [

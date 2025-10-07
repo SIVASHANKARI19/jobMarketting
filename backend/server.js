@@ -14,9 +14,11 @@ app.use("/api/jobs", jobRoutes);
 const skillGapRoutes = require("./routes/skillGap.routes");
 app.use("/api/skills", skillGapRoutes);
 
-// Chatbot route (simple wrapper, controller will return mock/real response)
 const chatbotRoutes = require("./routes/chatbot.routes");
 app.use("/api/chat", chatbotRoutes);
+
+const trendsRoutes = require("./routes/trends.routes");
+app.use("/api/trends", trendsRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
