@@ -29,16 +29,34 @@ const ChatbotCard = ({
     }
   }, [messages, isOpen]);
 
-  const handleSend = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSend = async () => {
     const text = input.trim();
     if (!text) return;
     setMessages((prev) => [...prev, { role: 'user', content: text }]);
     setInput('');
-    // Mock assistant response
-    setTimeout(() => {
+    setIsLoading(true);
+
+    try {
+      const resp = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: text }),
+      });
+
+      if (!resp.ok) throw new Error('bad response');
+      const data = await resp.json();
+      const reply = data?.reply || getMockReply(text);
+      setMessages((prev) => [...prev, { role: 'assistant', content: reply }]);
+    } catch (err) {
+      // fallback to local mock reply
       const reply = getMockReply(text);
       setMessages((prev) => [...prev, { role: 'assistant', content: reply }]);
-    }, 400);
+      console.error('Chat request failed', err);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const getMockReply = (text) => {
@@ -122,8 +140,8 @@ const ChatbotCard = ({
                 placeholder={placeholder}
                 className="flex-1 rounded-xl border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-4 focus:ring-blue-100"
               />
-              <button onClick={handleSend} className={`${accentBg} ${accentHover} text-white p-2 rounded-xl shadow-sm transition-colors`} aria-label="Send message">
-                <Send className="h-4 w-4" />
+              <button onClick={handleSend} disabled={isLoading} className={`${accentBg} ${accentHover} text-white p-2 rounded-xl shadow-sm transition-colors disabled:opacity-60 disabled:cursor-not-allowed`} aria-label="Send message">
+                {isLoading ? <span className="text-sm">...</span> : <Send className="h-4 w-4" />}
               </button>
             </div>
           </div>
