@@ -1,185 +1,121 @@
-import  { useState } from "react";
-import { useGoogleLogin } from "@react-oauth/google";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import { TextField, IconButton, InputAdornment } from "@mui/material";
-import { FaUser, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
-import GoogleIcon from "@mui/icons-material/Google";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import GitHubIcon from "@mui/icons-material/GitHub";
-import loginImg from "../../assets/login.jpg";
-const Login = () => {
-  const navigate = useNavigate();
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Eye, EyeOff, Mail, Lock } from 'lucide-react';
+
+const credentials = {
+  jobseeker: { email: "job", password: "job123", role: "jobseeker" },
+  client: { email: "client", password: "client123", role: "client" },
+  admin: { email: "admin", password: "admin123", role: "admin" }
+};
+
+const LoginPage = ({ onLogin }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
-    username: "",
-    password: "",
+    email: '',
+    password: ''
   });
+  const navigate = useNavigate();
 
-  const loginGoogle = useGoogleLogin({
-    onSuccess: async (response) => {
-      console.log("Google OAuth Response:", response);
-      try {
-        const userInfo = await axios.get(
-          `https://www.googleapis.com/oauth2/v2/userinfo?access_token=${response.access_token}`,
-          {
-            headers: {
-              Authorization: `Bearer ${response.access_token}`,
-              Accept: "application/json",
-            },
-          }
-        );
-        console.log("User Info:", userInfo.data);
-        navigate("/register");
-      } catch (error) {
-        console.error("Error:", error);
-      }
-    },
-    onError: (error) => console.log("Login Failed:", error),
-  });
-
-  const handleInputChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleLogin = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Login with:", formData);
-  };
+    const { email, password } = formData;
 
-  const handleLinkedInLogin = () => {
-    console.log("LinkedIn login clicked");
-  };
+    const user = Object.values(credentials).find(
+      cred => cred.email === email && cred.password === password
+    );
 
-  const handleGitHubLogin = () => {
-    console.log("GitHub login clicked");
+    if (user) {
+      const userData = {
+        id: Date.now(),
+        name: user.role.toUpperCase(),
+        email: user.email,
+        role: user.role,
+        avatar: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop"
+      };
+      onLogin(userData);
+      navigate('/dashboard');
+    } else {
+      alert("Invalid email or password");
+    }
   };
 
   return (
-    <div className=" max-h-screen px-6 flex items-center justify-center">
-      <div className="flex flex-col md:flex-row bg-white rounded-xl p-9 shadow-lg overflow-hidden gap-10">
-        {/* Left - Form */}
-        <div className="flex flex-col  flex-1 w-120 p-3 ">
-          <h1 className="text-4xl font-medium mb-6 text-gray-500 w-1.5xl text-left">
-            Welcome to your professional community
-          </h1>
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4">
+      <div className="max-w-md w-full bg-white rounded-lg shadow-lg">
+        <div className="p-8">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-gray-800">Welcome Back</h2>
+            <p className="text-gray-600 mt-2">Sign in to your account</p>
+          </div>
 
-          <p className="text-gray-500 mb-8">Sign in to your account</p>
-          <form onSubmit={handleLogin} className="space-y-6">
-            <div className="flex flex-col gap-8.5">
-              <TextField
-                sx={{
-                  "& .MuiOutlinedInput-root": {
-                    borderRadius: "8px",
-                  },
-                }}
-                name="username"
-                label="Username"
-                variant="outlined"
-                size="small"
-                value={formData.username}
-                onChange={handleInputChange}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <FaUser className="text-gray-400" />
-                    </InputAdornment>
-                  ),
-                }}
-              />
-              <TextField
-                sx={{
-                  "& .MuiOutlinedInput-root": {
-                    borderRadius: "8px",
-                  },
-                }}
-                size="small"
-                name="password"
-                label="Password"
-                type={showPassword ? "text" : "password"}
-                variant="outlined"
-                value={formData.password}
-                onChange={handleInputChange}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <FaLock className="text-gray-400" />
-                    </InputAdornment>
-                  ),
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton
-                        onClick={() => setShowPassword(!showPassword)}
-                        edge="end"
-                      >
-                        {showPassword ? <FaEyeSlash /> : <FaEye />}
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-              />
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Username</label>
+              <div className="relative">
+                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                <input
+                  type="text"
+                  value={formData.email}
+                  onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="Enter your Username"
+                  required
+                />
+              </div>
             </div>
-            <div className="flex justify-end">
-              <a href="#" className="text-[#0077b5] text-sm hover:underline">
-                Forgot Password?
-              </a>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
+              <div className="relative">
+                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  value={formData.password}
+                  onChange={(e) => setFormData(prev => ({ ...prev, password: e.target.value }))}
+                  className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="Enter your password"
+                  required
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                >
+                  {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                </button>
+              </div>
             </div>
+
+            <div className="flex items-center justify-between">
+              <div className="flex items-center">
+                <input
+                  type="checkbox"
+                  id="remember"
+                  className="h-4 w-4 text-blue-600 border-gray-300 rounded"
+                />
+                <label htmlFor="remember" className="ml-2 text-sm text-gray-700">Remember me</label>
+              </div>
+              <Link to="/forgot-password" className="text-sm text-blue-600 hover:text-blue-800">Forgot password?</Link>
+            </div>
+
             <button
               type="submit"
-              className="w-full   py-2 bg-[#0077b5] hover:bg-[#005983] text-white rounded-md font-semibold transition-colors"
+              className="w-full bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors"
             >
               Sign In
             </button>
           </form>
-          <div className="flex items-center my-6">
-            <div className="flex-grow border-t border-gray-300"></div>
-            <span className="mx-4 text-gray-500">or continue with</span>
-            <div className="flex-grow border-t border-gray-300"></div>
+
+          <div className="mt-6 text-center">
+            <p className="text-sm text-gray-600">
+              Don't have an account?{' '}
+              <Link to="/register" className="text-blue-600 hover:text-blue-800 font-medium">Sign up</Link>
+            </p>
           </div>
-          <div className="flex justify-center space-x-4">
-            <IconButton
-              onClick={loginGoogle}
-              className="!w-14 !h-14 border border-gray-300 bg-white hover:bg-gray-100 transition"
-            >
-              <GoogleIcon sx={{ color: "#db4437", fontSize: 28 }} />
-            </IconButton>
-
-            <IconButton
-              onClick={handleLinkedInLogin}
-              className="!w-14 !h-14 border border-[#0077b5] bg-white hover:bg-[#e6f4f9] transition"
-            >
-              <LinkedInIcon sx={{ color: "#0077b5", fontSize: 28 }} />
-            </IconButton>
-
-            <IconButton
-              onClick={handleGitHubLogin}
-              className="!w-14 !h-14 border border-gray-300 bg-white hover:bg-gray-100 transition"
-            >
-              <GitHubIcon sx={{ color: "#333", fontSize: 28 }} />
-            </IconButton>
-          </div>
-
-          <p className="text-center text-gray-500 mt-6">
-            Don't have an account?{" "}
-            <a
-              href="#"
-              className="text-[#0077b5] font-semibold hover:underline"
-            >
-              Sign up
-            </a>
-          </p>
-        </div>
-
-        {/* Right - Image */}
-        <div className="">
-          <img src={loginImg} alt="Login" height={200} width={600} />
         </div>
       </div>
     </div>
   );
 };
 
-export default Login;
+export default LoginPage;

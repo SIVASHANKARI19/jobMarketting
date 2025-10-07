@@ -2,7 +2,7 @@ import { useRef } from "react";
 import jobimg from "../../assets/jobRole.jpg";
 import TopNavbar from "../../components/TopNavBar/TopNavBar";
 import SmallCard from "../../components/smallCard";
-
+import JobCard from "../../components/Card";
 const Dashboard = () => {
   const scrollRef = useRef(null);
   const scroll = (direction) => {
@@ -98,9 +98,9 @@ const Dashboard = () => {
 
   return (
     <div>
-      <div className="fixed ">
+
         <TopNavbar />
-      </div>
+
       <div className="absolute top-[10%] w-full">
         {/* Scroll buttons */}
         {/* <button
@@ -118,11 +118,11 @@ const Dashboard = () => {
         </button> */}
 
         {/* Cards container */}
-        <div
+        {/* <div
           ref={scrollRef}
           className="flex flex-nowrap overflow-x-scroll gap-4 px-10 hide-scrollbar scroll-smooth"
         >
-          {/* {jobs.map((job, index) => (
+          {jobs.map((job, index) => (
             <div key={index} className="flex-shrink-0">
               <JobCard
                 title={job.title}
@@ -133,9 +133,9 @@ const Dashboard = () => {
                 onKnowMore={job.onKnowMore}
               />
             </div>
-          ))} */}
+          ))}
           <SmallCard />
-        </div>
+        </div> */}
       </div>
     </div>
   );
