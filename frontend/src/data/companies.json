@@ -1,0 +1,57 @@
+[
+  {
+    "id": 1,
+    "name": "TechCorp Solutions",
+    "industry": "Technology",
+    "logo": "https://images.pexels.com/photos/267350/pexels-photo-267350.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+    "location": "Bangalore",
+    "employees": "1000-5000",
+    "founded": 2015,
+    "description": "Leading technology company specializing in software development and digital transformation.",
+    "website": "https://techcorp.com"
+  },
+  {
+    "id": 2,
+    "name": "InnovateLabs",
+    "industry": "Fintech",
+    "logo": "https://images.pexels.com/photos/3182773/pexels-photo-3182773.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+    "location": "Mumbai",
+    "employees": "500-1000",
+    "founded": 2018,
+    "description": "Innovative fintech startup revolutionizing digital payments and financial services.",
+    "website": "https://innovatelabs.com"
+  },
+  {
+    "id": 3,
+    "name": "DataMinds Analytics",
+    "industry": "Analytics",
+    "logo": "https://images.pexels.com/photos/590041/pexels-photo-590041.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+    "location": "Hyderabad",
+    "employees": "100-500",
+    "founded": 2020,
+    "description": "Data analytics and AI company helping businesses make data-driven decisions.",
+    "website": "https://dataminds.com"
+  },
+  {
+    "id": 4,
+    "name": "CloudTech Infrastructure",
+    "industry": "Cloud Computing",
+    "logo": "https://images.pexels.com/photos/325229/pexels-photo-325229.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+    "location": "Pune",
+    "employees": "200-500",
+    "founded": 2017,
+    "description": "Cloud infrastructure and DevOps solutions provider for enterprise clients.",
+    "website": "https://cloudtech.com"
+  },
+  {
+    "id": 5,
+    "name": "DesignStudio Pro",
+    "industry": "Design",
+    "logo": "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+    "location": "Delhi",
+    "employees": "50-100",
+    "founded": 2019,
+    "description": "Creative design studio specializing in UX/UI design and branding.",
+    "website": "https://designstudio.com"
+  }
+]
