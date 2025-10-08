@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-case-declarations */
 import { useState } from 'react';
 import { PersonalInfoForm } from './components/PersonalInfoForm';
 import { SummaryForm } from './components/SummaryForm';
@@ -62,13 +64,13 @@ const ResumeBuilder = () =>{
     setResumeData({ ...resumeData, skills: data });
   };
 
-  // const updateCertifications = (data) => {
-  //   setResumeData({ ...resumeData, certifications: data });
-  // };
+  const updateCertifications = (data) => {
+    setResumeData({ ...resumeData, certifications: data });
+  };
 
-  // const updateProjects = (data) => {
-  //   setResumeData({ ...resumeData, projects: data });
-  // };
+  const updateProjects = (data) => {
+    setResumeData({ ...resumeData, projects: data });
+  };
 
   const addCustomSection = () => {
     const newSection = {
