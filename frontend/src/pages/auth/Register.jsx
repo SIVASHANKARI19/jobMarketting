@@ -19,36 +19,23 @@ const [activeStep, setActiveStep] = useState(() => {
     email: "",
     phone: "",
     dateOfBirth: "",
-    gender: "",
+    password:"",
+    role:"",
     
     // Location Info
     address: "",
-    city: "",
-    state: "",
-    zipCode: "",
-    country: "",
     
     // Professional Info
-    qualification: "",
-    institution: "",
-    graduationYear: "",
     skills: "",
     experience: "",
-    currentCompany: "",
     currentPosition: "",
     
     // Job Preferences
     desiredPosition: "",
     preferredLocation: "",
     expectedSalary: "",
-    noticePeriod: "",
-    workType: "",
     
     // Additional Info
-    languages: "",
-    certifications: "",
-    achievements: "",
-    portfolio: "",
     linkedIn: "",
     github:"",
     resume: ""
@@ -106,16 +93,10 @@ const [activeStep, setActiveStep] = useState(() => {
       lastName: "",
       email: "",
       phone: "",
-      dateOfBirth: "",
       gender: "",
       address: "",
       city: "",
       state: "",
-      zipCode: "",
-      country: "",
-      qualification: "",
-      institution: "",
-      graduationYear: "",
       skills: "",
       experience: "",
       currentCompany: "",
@@ -123,15 +104,11 @@ const [activeStep, setActiveStep] = useState(() => {
       desiredPosition: "",
       preferredLocation: "",
       expectedSalary: "",
-      noticePeriod: "",
-      workType: "",
-      languages: "",
-      certifications: "",
-      achievements: "",
-      portfolio: "",
       linkedIn: "",
       github:"",
-      resume: ""
+      resume: "",
+      password:"",
+      role:""
     });
   }
 
@@ -149,12 +126,6 @@ const [activeStep, setActiveStep] = useState(() => {
         return formData.skills && formData.experience;
       case 2:
         return formData.desiredPosition;
-      case 3:
-        return true;
-      case 4:
-        return formData.desiredPosition;
-      case 5:
-        return true; // Optional step
       case 6:
         return true; // Review step
       default:
@@ -186,8 +157,31 @@ const [activeStep, setActiveStep] = useState(() => {
                   className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                 />
               </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-gray-700"> Password *</label>
+                <input
+                  type="text"
+                  name="password"
+                  placeholder="Password"
+                  value={formData.password}
+                  onChange={handleInputChange}
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                />
+              </div>
               
-           
+           <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-700">Role *</label>
+                  <select
+                    name="experience"
+                    value={formData.role}
+                    onChange={handleInputChange}
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  >
+                    <option value="">Select Role :</option>
+                    <option value="fresher">Job Seeker</option>
+                    <option value="1-2">Client</option>
+                  </select>
+                </div>
               
               <div className="space-y-2">
                 <label className="text-sm font-medium text-gray-700">Email Address *</label>
