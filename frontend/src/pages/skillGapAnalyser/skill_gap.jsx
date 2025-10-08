@@ -19,20 +19,19 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header />
+      {/* <Header /> */}
       
-      <main className="py-12 px-4 sm:px-6 lg:px-8 space-y-16">
+      <main className="py-12 px-4 sm:px-6 lg:px-6">
         {/* Hero Section */}
         <section className="text-center max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          <h1 className="text-4xl md:text-4xl font-bold text-gray-900 mb-4">
             Analyze Your <span className="text-blue-600">Skill Gap</span>
           </h1>
           <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-            Upload your resume and get instant insights on skill gaps, job matches, 
-            and personalized learning recommendations to advance your career.
+           Upload your resume to get AI insights on your skills,job matches,and learning paths.
           </p>
-          <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-500">
-            <span className="flex items-center space-x-1">
+          {/* <div className="flex flex-wrap justify-center gatext-sm text-gray-500"> */}
+            {/* <span className="flex items-center space-x-1">
               <div className="w-2 h-2 bg-green-500 rounded-full"></div>
               <span>ATS Resume Builder</span>
             </span>
@@ -43,8 +42,8 @@ function App() {
             <span className="flex items-center space-x-1">
               <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
               <span>Certified Learning Paths</span>
-            </span>
-          </div>
+            </span> */}
+          {/* </div> */}
         </section>
 
         {/* Resume Upload Section */}
@@ -115,7 +114,7 @@ function App() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
+      {/* <footer className="bg-gray-900 text-white py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h3 className="text-2xl font-bold mb-4">Ready to Close Your Skill Gap?</h3>
@@ -130,7 +129,7 @@ function App() {
             </button>
           </div>
         </div>
-      </footer>
+      </footer> */}
       <ChatbotCard
         title="Career AI Assistant"
         subtitle="Ask anything about resumes, skills, jobs, and learning"

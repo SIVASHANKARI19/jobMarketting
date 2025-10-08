@@ -5,30 +5,21 @@ import FeedPage from "../pages/Feed";
 import SkillGapAnalyzer from "../pages/skillGapAnalyser/skill_gap";
 import AdminDashboard from "../pages/AdminDashboard";
 import HomePage from "../pages/Home"; // ✅ import your real homepage
+import JobTrendsPage from "../components/JobTrends/JobTrendsPage";
 
 const router = (isAuthenticated, currentUser, handleLogin) => [
   {
     path: "/",
     element: !isAuthenticated ? <HomePage /> : <Navigate to="/feed" />,
   },
-  // {
-  //   path: "/register",
-  //   element: !isAuthenticated ? (
-  //     <RegisterPage onLogin={handleLogin} />
-  //   ) : (
-  //     <Navigate to="/feed" />
-  //   ),
-  // },
   {
     path: "/register",
-    element:
-      <RegisterPage/>
-   },
-   {
-    path:"/feed",
-    element:<FeedPage/>
-
-   },
+    element: !isAuthenticated ? (
+      <RegisterPage onLogin={handleLogin} />
+    ) : (
+      <Navigate to="/feed" />
+    ),
+  },
   {
     path: "/login",
     element: !isAuthenticated ? (
@@ -41,21 +32,22 @@ const router = (isAuthenticated, currentUser, handleLogin) => [
     path:'/skill-gap-analyzer',
     element:<SkillGapAnalyzer/>
 },
-  // ...(isAuthenticated
-  //   ? [
-  //       { path: "/feed", element: <FeedPage /> },
+  ...(isAuthenticated
+    ? [
+        { path: "/feed", element: <FeedPage /> },
 
-  //       ...(currentUser?.role === "admin"
-  //         ? [{ path: "/admin-dashboard", element: <AdminDashboard /> }]
-  //         : []),
+        ...(currentUser?.role === "admin"
+          ? [{ path: "/admin-dashboard", element: <AdminDashboard /> }]
+          : []),
 
-  //       { path: "*", element: <Navigate to="/feed" /> },
-  //     ]
-  //   : [{ path: "*", element: <Navigate to="/" /> }]),
-    {
-    path:'/admin-dashboard',
-    element:<AdminDashboard/>
-},
+        { path: "*", element: <Navigate to="/feed" /> },
+      ]
+    : [{ path: "*", element: <Navigate to="/" /> }]),
+ 
+  {
+    path: '/job-trends',
+    element: <JobTrendsPage />,
+  },
 ];
 
 export default router;
