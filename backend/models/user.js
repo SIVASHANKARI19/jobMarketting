@@ -24,7 +24,6 @@ module.exports =  async(sequelize, DataTypes) => {
       experience: DataTypes.INTEGER,
       location: DataTypes.STRING,
       education: DataTypes.STRING,
-      profileCompletion: DataTypes.FLOAT,
       avatar: DataTypes.STRING,
       registered_on: {
         type: DataTypes.DATE,

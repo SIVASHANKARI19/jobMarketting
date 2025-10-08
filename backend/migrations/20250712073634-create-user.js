@@ -27,16 +27,10 @@ module.exports = {
       registered_on: {
         type: Sequelize.DATE,
       },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.NOW(),
+      profile_completion: {
+        type: Sequelize.FLOAT,
       },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.NOW(),
-      },
+      
     });
   },
   async down(queryInterface, Sequelize) {
