@@ -1,12 +1,31 @@
 const { User } = require("../models");
 const bcrypt = require("bcrypt");
+
 const createUser = async (data) => {
-  return await User.create(data);
+  const { name, email, password, role } = data;
+
+  const saltRounds = 10;
+  const password_hash = await bcrypt.hash(password, saltRounds);
+
+  const user = await User.create({
+    name,
+    email,
+    password_hash,
+    role,
+  });
+
+  const plainUser = user.toJSON();
+  delete plainUser.password_hash;
+  return plainUser;
 };
 
 const getAllUsers = async () => {
-  return await User.findAll();
+  const users = await User.findAll({
+    attributes: ["user_id", "name", "email", "role", "registered_on"],
+  });
+  return users;
 };
+
 const validateUser = async (email, password) => {
   const user = await User.findOne({ where: { email } });
   if (!user) return null;
