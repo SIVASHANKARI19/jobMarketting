@@ -14,70 +14,24 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   User.init({
-    user_id: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
-      primaryKey: true
-    },
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    email:{
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
-      validate: {
-        isEmail: true
-      }
-    },
-    password_hash: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    role: {
-      type: DataTypes.ENUM('job_seeker', 'employer', 'analyst'),
-      allowNull: false,
-      defaultValue: 'job_seeker'
-    },
-    registered_on: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW,
-      allowNull: false
-    },
-    phone: {
-  type: DataTypes.STRING,
-  allowNull: false,
-},
-experience: {
-  type: DataTypes.STRING,
-  allowNull: false,
-},
-skills: {
-  type: DataTypes.TEXT,
-  allowNull: false,
-},
-desired_position: {
-  type: DataTypes.STRING,
-  allowNull: false,
-},
-portfolio: {
-  type: DataTypes.STRING,
-  allowNull: true,
-},
-linkedin: {
-  type: DataTypes.STRING,
-  allowNull: true,
-},
-github: {
-  type: DataTypes.STRING,
-  allowNull: true,
-},
-
+    name: DataTypes.STRING,
+    email: DataTypes.STRING,
+    phone: DataTypes.STRING,
+    password_hash: DataTypes.STRING,
+    role: DataTypes.STRING,
+    skills: DataTypes.TEXT,
+    experience: DataTypes.STRING,
+    desiredPosition: DataTypes.STRING,
+    city: DataTypes.STRING,
+    currentCompany: DataTypes.STRING,
+    currentPosition: DataTypes.STRING,
+    dateOfBirth: DataTypes.DATEONLY,
+    expectedSalary: DataTypes.STRING,
+    github: DataTypes.STRING,
+    linkedIn: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'User',
-    tableName: 'Users',
   });
   return User;
 };

@@ -6,72 +6,42 @@ const Register = () => {
   const navigate = useNavigate();
 const [activeStep, setActiveStep] = useState(() => {
   const savedStep = localStorage.getItem("activeStep");
-  return savedStep !== null ? parseInt(savedStep, 10) : 0;
+  return savedStep !== null ? parseInt(savedStep, 10) : 1;
 });
 
    useEffect(() => {
   localStorage.setItem("activeStep", activeStep);
 }, [activeStep]);
-  const [userType, setUserType] = useState("");
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
+    //page 1 Basic Info
+    name : "",
     email: "",
     phone: "",
     dateOfBirth: "",
-    gender: "",
-    
-    // Location Info
-    address: "",
     city: "",
-    state: "",
-    zipCode: "",
-    country: "",
     
-    // Professional Info
-    qualification: "",
-    institution: "",
-    graduationYear: "",
+    // Page 2 Professional Background
     skills: "",
     experience: "",
     currentCompany: "",
     currentPosition: "",
     
-    // Job Preferences
+    // Page 3 Job Preferences
     desiredPosition: "",
-    preferredLocation: "",
     expectedSalary: "",
-    noticePeriod: "",
-    workType: "",
-    
-    // Additional Info
-    languages: "",
-    certifications: "",
-    achievements: "",
-    portfolio: "",
-    linkedIn: "",
-    resume: ""
+    linkedin: "",
+    github:"",
   });
 
   const steps = [
+   
     {
       id: 1,
-      label: "User Type",
-      icon: User,
-      shortLabel: "Type"
-    },
-    {
-      id: 2,
       label: "Basic Info",
       icon: FileText,
       shortLabel: "Basic"
     },
-    {
-      id: 3,
-      label: "Location",
-      icon: MapPin,
-      shortLabel: "Location"
-    },
+    
     {
       id: 4,
       label: "Professional",
@@ -83,12 +53,6 @@ const [activeStep, setActiveStep] = useState(() => {
       label: "Job Preferences",
       icon: Target,
       shortLabel: "Preferences"
-    },
-    {
-      id: 6,
-      label: "Additional Info",
-      icon: DollarSign,
-      shortLabel: "Additional"
     },
     {
       id: 7,
@@ -115,42 +79,28 @@ const [activeStep, setActiveStep] = useState(() => {
 
   function handleReset() {
     setActiveStep(0);
-    setUserType("");
     setFormData({
-      firstName: "",
-      lastName: "",
+      name: "",
       email: "",
       phone: "",
       dateOfBirth: "",
-      gender: "",
-      address: "",
       city: "",
-      state: "",
-      zipCode: "",
-      country: "",
-      qualification: "",
-      institution: "",
-      graduationYear: "",
-      skills: "",
-      experience: "",
-      currentCompany: "",
-      currentPosition: "",
-      desiredPosition: "",
-      preferredLocation: "",
-      expectedSalary: "",
-      noticePeriod: "",
-      workType: "",
-      languages: "",
-      certifications: "",
-      achievements: "",
-      portfolio: "",
-      linkedIn: "",
-      resume: ""
+       // Page 2 Professional Background
+    skills: "",
+    experience: "",
+    currentCompany: "",
+    currentPosition: "",
+    
+    // Page 3 Job Preferences
+    desiredPosition: "",
+    expectedSalary: "",
+    linkedin: "",
+    github:"",
     });
   }
 
   function handleSubmit() {
-    console.log("Submitted Data:", { userType, ...formData });
+    console.log("Submitted Data:", {formData });
     navigate("/dashboard");
     alert("Registration completed successfully!");
   }
@@ -158,13 +108,13 @@ const [activeStep, setActiveStep] = useState(() => {
   function isStepValid(stepIndex) {
     switch (stepIndex) {
       case 0:
-        return userType !== "";
+        return formData.name && formData.email && formData.phone;
       case 1:
-        return formData.firstName && formData.lastName && formData.email && formData.phone;
-      case 2:
-        return formData.address && formData.city && formData.state && formData.zipCode && formData.country;
-      case 3:
         return formData.skills && formData.experience;
+      case 2:
+        return formData.desiredPosition;
+      case 3:
+        return true;
       case 4:
         return formData.desiredPosition;
       case 5:
@@ -178,57 +128,9 @@ const [activeStep, setActiveStep] = useState(() => {
 
   const renderStepContent = () => {
     switch (activeStep) {
-      case 0:
-        return (
-          <div className="space-y-8">
-            <div className="text-center">
-              <h2 className="text-2xl font-bold text-gray-800 mb-2">Choose Your Profile Type</h2>
-              <p className="text-gray-600">Select the category that best describes your professional background</p>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div 
-                className={`p-6 rounded-xl border-2 cursor-pointer transition-all duration-300 hover:shadow-lg ${
-                  userType === "white-collar" 
-                    ? "border-blue-500 bg-blue-50 shadow-md" 
-                    : "border-gray-200 hover:border-gray-300"
-                }`}
-                onClick={() => setUserType("white-collar")}
-              >
-                <div className="flex items-center space-x-3">
-                  <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${
-                    userType === "white-collar" ? "border-blue-500" : "border-gray-300"
-                  }`}>
-                    {userType === "white-collar" && <div className="w-2 h-2 bg-blue-500 rounded-full"></div>}
-                  </div>
-                  <h3 className="text-lg font-semibold text-gray-800">White-Collar Professional</h3>
-                </div>
-                <p className="text-gray-600 mt-2 ml-7">Office workers, managers, executives, IT professionals, consultants</p>
-              </div>
-              
-              <div 
-                className={`p-6 rounded-xl border-2 cursor-pointer transition-all duration-300 hover:shadow-lg ${
-                  userType === "blue-collar" 
-                    ? "border-blue-500 bg-blue-50 shadow-md" 
-                    : "border-gray-200 hover:border-gray-300"
-                }`}
-                onClick={() => setUserType("blue-collar")}
-              >
-                <div className="flex items-center space-x-3">
-                  <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${
-                    userType === "blue-collar" ? "border-blue-500" : "border-gray-300"
-                  }`}>
-                    {userType === "blue-collar" && <div className="w-2 h-2 bg-blue-500 rounded-full"></div>}
-                  </div>
-                  <h3 className="text-lg font-semibold text-gray-800">Blue-Collar Worker</h3>
-                </div>
-                <p className="text-gray-600 mt-2 ml-7">Skilled trades, technicians, operators, craftspeople, laborers</p>
-              </div>
-            </div>
-          </div>
-        );
+      
 
-      case 1:
+      case 0:
         return (
           <div className="space-y-6">
             <div className="text-center">
@@ -238,28 +140,18 @@ const [activeStep, setActiveStep] = useState(() => {
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-700">First Name *</label>
+                <label className="text-sm font-medium text-gray-700"> Name *</label>
                 <input
                   type="text"
-                  name="firstName"
-                  placeholder="Enter your first name"
-                  value={formData.firstName}
+                  name="name"
+                  placeholder="Name"
+                  value={formData.name}
                   onChange={handleInputChange}
                   className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                 />
               </div>
               
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-700">Last Name *</label>
-                <input
-                  type="text"
-                  name="lastName"
-                  placeholder="Enter your last name"
-                  value={formData.lastName}
-                  onChange={handleInputChange}
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                />
-              </div>
+           
               
               <div className="space-y-2">
                 <label className="text-sm font-medium text-gray-700">Email Address *</label>
@@ -295,49 +187,7 @@ const [activeStep, setActiveStep] = useState(() => {
                   className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                 />
               </div>
-              
               <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-700">Gender</label>
-                <select
-                  name="gender"
-                  value={formData.gender}
-                  onChange={handleInputChange}
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                >
-                  <option value="">Select Gender</option>
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                  <option value="other">Other</option>
-                  <option value="prefer-not-to-say">Prefer not to say</option>
-                </select>
-              </div>
-            </div>
-          </div>
-        );
-
-      case 2:
-        return (
-          <div className="space-y-6">
-            <div className="text-center">
-              <h2 className="text-2xl font-bold text-gray-800 mb-2">Location Information</h2>
-              <p className="text-gray-600">Where are you located?</p>
-            </div>
-            
-            <div className="space-y-6">
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-700">Street Address *</label>
-                <input
-                  type="text"
-                  name="address"
-                  placeholder="123 Main Street, Apt 4B"
-                  value={formData.address}
-                  onChange={handleInputChange}
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                />
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
                   <label className="text-sm font-medium text-gray-700">City *</label>
                   <input
                     type="text"
@@ -348,56 +198,10 @@ const [activeStep, setActiveStep] = useState(() => {
                     className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   />
                 </div>
-                
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-gray-700">State/Province *</label>
-                  <input
-                    type="text"
-                    name="state"
-                    placeholder="NY"
-                    value={formData.state}
-                    onChange={handleInputChange}
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                  />
-                </div>
-                
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-gray-700">ZIP/Postal Code *</label>
-                  <input
-                    type="text"
-                    name="zipCode"
-                    placeholder="10001"
-                    value={formData.zipCode}
-                    onChange={handleInputChange}
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                  />
-                </div>
-                
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-gray-700">Country *</label>
-                  <select
-                    name="country"
-                    value={formData.country}
-                    onChange={handleInputChange}
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                  >
-                    <option value="">Select Country</option>
-                    <option value="us">United States</option>
-                    <option value="ca">Canada</option>
-                    <option value="uk">United Kingdom</option>
-                    <option value="au">Australia</option>
-                    <option value="in">India</option>
-                    <option value="de">Germany</option>
-                    <option value="fr">France</option>
-                    <option value="other">Other</option>
-                  </select>
-                </div>
-              </div>
             </div>
           </div>
         );
-
-      case 3:
+      case 1:
         return (
           <div className="space-y-6">
             <div className="text-center">
@@ -406,53 +210,6 @@ const [activeStep, setActiveStep] = useState(() => {
             </div>
             
             <div className="space-y-6">
-              {userType === "white-collar" && (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-gray-700">Highest Qualification *</label>
-                    <select
-                      name="qualification"
-                      value={formData.qualification}
-                      onChange={handleInputChange}
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                    >
-                      <option value="">Select Qualification</option>
-                      <option value="high-school">High School</option>
-                      <option value="associate">Associate Degree</option>
-                      <option value="bachelor">Bachelor's Degree</option>
-                      <option value="master">Master's Degree</option>
-                      <option value="phd">PhD</option>
-                      <option value="other">Other</option>
-                    </select>
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-gray-700">Institution</label>
-                    <input
-                      type="text"
-                      name="institution"
-                      placeholder="University/College Name"
-                      value={formData.institution}
-                      onChange={handleInputChange}
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                    />
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-gray-700">Graduation Year</label>
-                    <input
-                      type="number"
-                      name="graduationYear"
-                      placeholder="2020"
-                      min="1960"
-                      max="2030"
-                      value={formData.graduationYear}
-                      onChange={handleInputChange}
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                    />
-                  </div>
-                </div>
-              )}
               
               <div className="space-y-2">
                 <label className="text-sm font-medium text-gray-700">Key Skills *</label>
@@ -512,7 +269,7 @@ const [activeStep, setActiveStep] = useState(() => {
           </div>
         );
 
-      case 4:
+      case 2:
         return (
           <div className="space-y-6">
             <div className="text-center">
@@ -534,17 +291,7 @@ const [activeStep, setActiveStep] = useState(() => {
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-gray-700">Preferred Location</label>
-                  <input
-                    type="text"
-                    name="preferredLocation"
-                    placeholder="City or Remote"
-                    value={formData.preferredLocation}
-                    onChange={handleInputChange}
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                  />
-                </div>
+             
                 
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-gray-700">Expected Salary</label>
@@ -557,24 +304,31 @@ const [activeStep, setActiveStep] = useState(() => {
                     className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   />
                 </div>
-                
+              
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-gray-700">Notice Period</label>
-                  <select
-                    name="noticePeriod"
-                    value={formData.noticePeriod}
+                  <label className="text-sm font-medium text-gray-700">LinkedIn Profile</label>
+                  <input
+                    type="text"
+                    name="linkedin"
+                    placeholder="LinkedIn Profile"
+                    value={formData.linkedin}
                     onChange={handleInputChange}
                     className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                  >
-                    <option value="">Select Notice Period</option>
-                    <option value="immediate">Immediate</option>
-                    <option value="1-week">1 Week</option>
-                    <option value="2-weeks">2 Weeks</option>
-                    <option value="1-month">1 Month</option>
-                    <option value="2-months">2 Months</option>
-                    <option value="3-months">3 Months</option>
-                  </select>
+                  />
                 </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-700">Github Profile</label>
+                  <input
+                    type="text"
+                    name="github"
+                    placeholder="GitHub Profile"
+                    value={formData.github}
+                    onChange={handleInputChange}
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  />
+                </div>
+                
+              
                 
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-gray-700">Work Type Preference</label>
@@ -597,81 +351,8 @@ const [activeStep, setActiveStep] = useState(() => {
           </div>
         );
 
-      case 5:
-        return (
-          <div className="space-y-6">
-            <div className="text-center">
-              <h2 className="text-2xl font-bold text-gray-800 mb-2">Additional Information</h2>
-              <p className="text-gray-600">Help us know you better</p>
-            </div>
-            
-            <div className="space-y-6">
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-700">Languages</label>
-                <input
-                  type="text"
-                  name="languages"
-                  placeholder="e.g., English (Native), Spanish (Fluent), French (Basic)"
-                  value={formData.languages}
-                  onChange={handleInputChange}
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                />
-              </div>
-              
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-700">Certifications</label>
-                <textarea
-                  name="certifications"
-                  placeholder="List any relevant certifications"
-                  value={formData.certifications}
-                  onChange={handleInputChange}
-                  rows="3"
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                />
-              </div>
-              
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-700">Key Achievements</label>
-                <textarea
-                  name="achievements"
-                  placeholder="Highlight your major accomplishments"
-                  value={formData.achievements}
-                  onChange={handleInputChange}
-                  rows="3"
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                />
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-gray-700">Portfolio URL</label>
-                  <input
-                    type="url"
-                    name="portfolio"
-                    placeholder="https://yourportfolio.com"
-                    value={formData.portfolio}
-                    onChange={handleInputChange}
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                  />
-                </div>
-                
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-gray-700">LinkedIn Profile</label>
-                  <input
-                    type="url"
-                    name="linkedIn"
-                    placeholder="https://linkedin.com/in/yourprofile"
-                    value={formData.linkedIn}
-                    onChange={handleInputChange}
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        );
-
-      case 6:
+      
+      case 3:
         return (
           <div className="space-y-6">
             <div className="text-center">
@@ -684,49 +365,31 @@ const [activeStep, setActiveStep] = useState(() => {
                 <div>
                   <h3 className="font-semibold text-gray-800 mb-2">Personal Information</h3>
                   <div className="space-y-1 text-sm">
-                    <p><span className="font-medium">Name:</span> {formData.firstName} {formData.lastName}</p>
+                    <p><span className="font-medium">Name:</span> {formData.Name} {formData.lastName}</p>
                     <p><span className="font-medium">Email:</span> {formData.email}</p>
                     <p><span className="font-medium">Phone:</span> {formData.phone}</p>
-                    <p><span className="font-medium">User Type:</span> {userType}</p>
                   </div>
                 </div>
                 
-                <div>
-                  <h3 className="font-semibold text-gray-800 mb-2">Location</h3>
-                  <div className="space-y-1 text-sm">
-                    <p><span className="font-medium">City:</span> {formData.city}</p>
-                    <p><span className="font-medium">State:</span> {formData.state}</p>
-                    <p><span className="font-medium">Country:</span> {formData.country}</p>
-                  </div>
-                </div>
+              
                 
                 <div>
                   <h3 className="font-semibold text-gray-800 mb-2">Professional</h3>
                   <div className="space-y-1 text-sm">
                     <p><span className="font-medium">Experience:</span> {formData.experience}</p>
                     <p><span className="font-medium">Skills:</span> {formData.skills}</p>
-                    <p><span className="font-medium">Current Role:</span> {formData.currentPosition}</p>
                   </div>
                 </div>
                 
-                <div>
-                  <h3 className="font-semibold text-gray-800 mb-2">Preferences</h3>
-                  <div className="space-y-1 text-sm">
-                    <p><span className="font-medium">Desired Position:</span> {formData.desiredPosition}</p>
-                                        <p><span className="font-medium">Expected Salary:</span> {formData.expectedSalary}</p>
-                    <p><span className="font-medium">Notice Period:</span> {formData.noticePeriod}</p>
-                    <p><span className="font-medium">Work Type:</span> {formData.workType}</p>
-                  </div>
-                </div>
+         
 
                 <div>
                   <h3 className="font-semibold text-gray-800 mb-2">Additional Info</h3>
                   <div className="space-y-1 text-sm">
-                    <p><span className="font-medium">Languages:</span> {formData.languages}</p>
-                    <p><span className="font-medium">Certifications:</span> {formData.certifications}</p>
-                    <p><span className="font-medium">Achievements:</span> {formData.achievements}</p>
+                     <p><span className="font-medium">Desired Position:</span> {formData.desiredPosition}</p>
                     <p><span className="font-medium">Portfolio:</span> {formData.portfolio}</p>
-                    <p><span className="font-medium">LinkedIn:</span> {formData.linkedIn}</p>
+                    <p><span className="font-medium">LinkedIn:</span> {formData.linkedin}</p>
+                    <p><span className="font-medium">GitHub:</span> {formData.github}</p>
                   </div>
                 </div>
               </div>
