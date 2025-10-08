@@ -44,7 +44,36 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
       allowNull: false
-    }
+    },
+    phone: {
+  type: DataTypes.STRING,
+  allowNull: false,
+},
+experience: {
+  type: DataTypes.STRING,
+  allowNull: false,
+},
+skills: {
+  type: DataTypes.TEXT,
+  allowNull: false,
+},
+desired_position: {
+  type: DataTypes.STRING,
+  allowNull: false,
+},
+portfolio: {
+  type: DataTypes.STRING,
+  allowNull: true,
+},
+linkedin: {
+  type: DataTypes.STRING,
+  allowNull: true,
+},
+github: {
+  type: DataTypes.STRING,
+  allowNull: true,
+},
+
   }, {
     sequelize,
     modelName: 'User',

@@ -2,7 +2,7 @@ const { User } = require("../models");
 const bcrypt = require("bcrypt");
 
 const createUser = async (data) => {
-  const { name, email, password, role } = data;
+  const { name, email, password, role, phone, experience, skills, desired_position, portfolio, linkedin, github } = data;
 
   const saltRounds = 10;
   const password_hash = await bcrypt.hash(password, saltRounds);
@@ -12,6 +12,13 @@ const createUser = async (data) => {
     email,
     password_hash,
     role,
+    phone,
+    experience,
+    skills,
+    desired_position,
+    portfolio,
+    linkedin,
+    github,
   });
 
   const plainUser = user.toJSON();
