@@ -6,6 +6,7 @@ import {
   Mail,
   Info,
   FileCheck,
+  TrendingUp
 } from 'lucide-react';
 
 const Sidebar = ({ currentUser }) => {
@@ -15,6 +16,7 @@ const Sidebar = ({ currentUser }) => {
     if (currentUser?.role === 'jobseeker') {
       return [
         { path: '/feed', icon: Home, label: 'Job Feed' },
+        { path: '/job-trends', icon: TrendingUp, label: 'Job Trends' }
 
       ];
     } else if (currentUser?.role === 'client') {
