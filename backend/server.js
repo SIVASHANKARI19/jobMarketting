@@ -1,24 +1,26 @@
 const express = require("express");
 const cors = require("cors");
+const fileUpload = require("express-fileupload");
+const path = require("path");
+const fs = require("fs");
+const resumeAnalysisRoutes = require("./routes/resumeAnalysis.routes");
+
 const app = express();
 
-app.use(express.json());
+// Middleware
 app.use(cors());
+app.use(express.json());
+app.use(fileUpload());
 
-const userRoutes = require("./routes/user.routes");
-app.use("/api/users", userRoutes);
+// Routes
+app.use("/api/resume-analysis", resumeAnalysisRoutes);
 
-const jobRoutes = require("./routes/jobPosting.routes");
-app.use("/api/jobs", jobRoutes);
+// Ensure Resume_Analyser folder exists
+const resultFolder = path.join(__dirname, "Resume_Analyser");
+if (!fs.existsSync(resultFolder)) {
+    fs.mkdirSync(resultFolder, { recursive: true });
+}
 
-const skillGapRoutes = require("./routes/skillGap.routes");
-app.use("/api/skills", skillGapRoutes);
-
-const chatbotRoutes = require("./routes/chatbot.routes");
-app.use("/api/chat", chatbotRoutes);
-
-const trendsRoutes = require("./routes/trends.routes");
-app.use("/api/trends", trendsRoutes);
-
-const PORT = process.env.PORT || 3000;
+// Start server
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
