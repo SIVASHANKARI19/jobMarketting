@@ -5,6 +5,7 @@ import Sidebar from "./components/Sidebar";
 import usersData from "./data/users.json";
 import router from "./routes/Router";
 import SkillGapAnalyser from "./components/SkillGap/SkillAnalysis"; // Skill Gap component
+import ErrorBoundary from "./components/ErrorBoundary";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -39,36 +40,38 @@ function App() {
   );
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header & Sidebar only if authenticated */}
-      {isAuthenticated && (
-        <>
-          <Header
-            currentUser={currentUser}
-            onRoleChange={handleRoleChange}
-            onLogout={handleLogout}
-          />
-          <Sidebar currentUser={currentUser} />
-        </>
-      )}
-
-      {/* Routes container with proper sidebar offset */}
-      <div className={isAuthenticated ? "ml-64 pt-16" : ""}>
-        <Routes>
-          {routes.map((route, idx) => (
-            <Route key={idx} path={route.path} element={route.element} />
-          ))}
-
-          {/* Skill Gap Analyser Route */}
-          {isAuthenticated && (
-            <Route
-              path="/skill-gap-analyser"
-              element={<SkillGapAnalyser />}
+    <ErrorBoundary>
+      <div className="min-h-screen bg-gray-50">
+        {/* Header & Sidebar only if authenticated */}
+        {isAuthenticated && (
+          <>
+            <Header
+              currentUser={currentUser}
+              onRoleChange={handleRoleChange}
+              onLogout={handleLogout}
             />
-          )}
-        </Routes>
+            <Sidebar currentUser={currentUser} />
+          </>
+        )}
+
+        {/* Routes container with proper sidebar offset */}
+        <div className={isAuthenticated ? "ml-64 pt-16" : ""}>
+          <Routes>
+            {routes.map((route, idx) => (
+              <Route key={idx} path={route.path} element={route.element} />
+            ))}
+
+            {/* Skill Gap Analyser Route */}
+            {isAuthenticated && (
+              <Route
+                path="/skill-gap-analyser"
+                element={<SkillGapAnalyser />}
+              />
+            )}
+          </Routes>
+        </div>
       </div>
-    </div>
+    </ErrorBoundary>
   );
 }
 

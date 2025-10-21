@@ -1,53 +1,49 @@
-import { transformResumeAnalysisData } from '../utils/dataTransformer.js';
+// src/services/resumeAnalysisService.js
+export class ResumeAnalysisService {
+  static API_URL = 'http://127.0.0.1:5000';
 
-class ResumeAnalysisService {
-  static API_URL = 'http://127.0.0.1:5000';  // Python Flask server port
-
-  /**
-   * Fetch resume analysis results from the backend
-   */
-  static async getAnalysisResults() {
-    try {
-      const response = await fetch(`${this.API_URL}/api/resume-analysis/results`);
-      
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      
-      const contentType = response.headers.get("content-type");
-      if (!contentType || !contentType.includes("application/json")) {
-        throw new Error("Server did not return JSON");
-      }
-
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.error('Error loading result.json:', error);
-      throw error;
-    }
-  }
-
-  /**
-   * Upload resume and trigger analysis
-   */
   static async uploadResume(file) {
     const formData = new FormData();
     formData.append('resume', file);
 
     try {
-      const response = await fetch(`${this.API_URL}/api/resume-analysis/upload`, {
+      const response = await fetch(`${this.API_URL}/api/analyse`, {
         method: 'POST',
         body: formData,
       });
+
       if (!response.ok) {
-        throw new Error('Upload failed');
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Upload failed');
       }
-      const data = await response.json();
-      return { success: true, ...data };
+
+      return await response.json();
     } catch (error) {
-      return { success: false, message: error.message };
+      console.error('Error uploading resume:', error);
+      throw new Error('Failed to upload resume. Please try again.');
+    }
+  }
+
+  static async getAnalysisResults() {
+    try {
+      const response = await fetch(`${this.API_URL}/api/resume-analysis/results`);
+      
+      if (!response.ok) {
+        throw new Error('Failed to fetch analysis results');
+      }
+
+      const data = await response.json();
+      return {
+        overallScore: data.overallScore || 0,
+        skillGaps: data.skillGaps || [],
+        strongSkills: data.strongSkills || [],
+        matchingJobs: data.output || [],
+        recommendations: data.recommended_learning || []
+      };
+    } catch (error) {
+      console.error('Error fetching analysis results:', error);
+      throw new Error('Failed to load analysis results. Please try again.');
     }
   }
 }
 
-export { ResumeAnalysisService };
