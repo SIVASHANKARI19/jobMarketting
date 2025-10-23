@@ -1,0 +1,39 @@
+{
+  "input": {
+    "resume_pdf": "ML-powered_resume_analyser/data/Subiksha_resume.pdf",
+    "jobs_applied": [
+      {
+        "job_id": "JOB1",
+        "job_title": "Business Analyst",
+        "required_skills": [
+          { "skill": "Excel", "level": "Intermediate" },
+          { "skill": "Data Visualization", "level": "Intermediate" }
+        ]
+      },
+      {
+        "job_id": "JOB2",
+        "job_title": "Software Engineer",
+        "required_skills": [
+          { "skill": "JavaScript", "level": "Advanced" },
+          { "skill": "React", "level": "Intermediate" }
+        ]
+      }
+    ]
+  },
+  "output": [
+    {
+      "job_id": "JOB1",
+      "recommended_learning": [
+        { "course_name": "Excel Mastery", "platform": "Coursera" },
+        { "course_name": "Data Visualization with Tableau", "platform": "Udemy" }
+      ]
+    },
+    {
+      "job_id": "JOB2",
+      "recommended_learning": [
+        { "course_name": "React Advanced Patterns", "platform": "Udemy" },
+        { "course_name": "JavaScript Algorithms", "platform": "freeCodeCamp" }
+      ]
+    }
+  ]
+}

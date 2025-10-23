@@ -6,7 +6,11 @@ import SkillGapAnalyzer from "../pages/skillGapAnalyser/skill_gap";
 import AdminDashboard from "../pages/AdminDashboard";
 import HomePage from "../pages/Home"; // ✅ import your real homepage
 import JobTrendsPage from "../components/JobTrends/JobTrendsPage";
+<<<<<<< HEAD
 import Resume from "../pages/client/Resume";
+=======
+import TestIntegration from "../test-integration";
+>>>>>>> 553b45a276abc22758aa5b3752085055b232a6e5
 
 const router = (isAuthenticated, currentUser, handleLogin) => [
   {
@@ -36,7 +40,7 @@ const router = (isAuthenticated, currentUser, handleLogin) => [
   {
     path:'/skill-gap-analyzer',
     element:<SkillGapAnalyzer/>
-},
+  },
   ...(isAuthenticated
     ? [
         { path: "/feed", element: <FeedPage /> },
@@ -52,6 +56,10 @@ const router = (isAuthenticated, currentUser, handleLogin) => [
   {
     path: '/job-trends',
     element: <JobTrendsPage />,
+  },
+  {
+    path: '/test-integration',
+    element: <TestIntegration />,
   },
 ];
 
