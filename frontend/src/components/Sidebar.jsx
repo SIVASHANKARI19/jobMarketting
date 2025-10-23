@@ -6,8 +6,13 @@ import {
   Mail,
   Info,
   FileCheck,
+<<<<<<< HEAD
   TrendingUp,
   Newspaper
+=======
+  Newspaper,
+  BookOpen
+>>>>>>> 65052d0618a0bd45dc0beeb3d504dbfaec352e7c
 } from 'lucide-react';
 
 const Sidebar = ({ currentUser }) => {
@@ -23,7 +28,8 @@ const Sidebar = ({ currentUser }) => {
     } else if (currentUser?.role === 'client') {
       return [
         { path: '/feed', icon: Home, label: 'Dashboard' },
-        { path: '/resume' ,icon : Newspaper , label : 'Resume'}
+        { path: '/resume' ,icon : Newspaper , label : 'Resume'},
+        { path: '/courses' ,icon : BookOpen , label : 'Courses'},
       ];
     } else if (currentUser?.role === 'admin') {
       return [

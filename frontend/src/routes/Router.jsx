@@ -9,6 +9,7 @@ import HomePage from "../pages/Home"; // ✅ import your real homepage
 import JobTrendsPage from "../components/JobTrends/JobTrendsPage";
 <<<<<<< HEAD
 import Resume from "../pages/client/Resume";
+<<<<<<< HEAD
 =======
 import TestIntegration from "../test-integration";
 >>>>>>> 553b45a276abc22758aa5b3752085055b232a6e5
@@ -18,6 +19,9 @@ import AboutUsPage from "../pages/AboutUsPage";
 import TermsPage from "../pages/TermsPage";
 >>>>>>> 34bc275bec8519787d78172ac14b5cb5c3695c86
 
+=======
+import Courses from "../pages/client/Courses";
+>>>>>>> 65052d0618a0bd45dc0beeb3d504dbfaec352e7c
 const router = (isAuthenticated, currentUser, handleLogin) => [
   {
     path: "/",
@@ -26,6 +30,10 @@ const router = (isAuthenticated, currentUser, handleLogin) => [
   {
     path : '/resume',
     element : isAuthenticated ? <Resume /> : <Navigate to ="/login" />
+  },
+  {
+    path: "/courses",
+    element: isAuthenticated ? <Courses /> : <Navigate to="/login" />,
   },
   {
     path: "/register",

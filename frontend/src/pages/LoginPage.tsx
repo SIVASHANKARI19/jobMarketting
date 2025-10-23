@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { data, Link, useNavigate } from 'react-router-dom';
 import { Eye, EyeOff, Mail, Lock } from 'lucide-react';
+import { loginUser } from '../api/userApi';
 
 interface LoginPageProps {
   onLogin: (user: any) => void;
@@ -18,8 +19,10 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+<<<<<<< HEAD
 
     // Match user input with predefined credentials
     let matchedUser = null;
@@ -55,6 +58,31 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
     } else {
       setError("Invalid email or password. Please try again.");
     }
+=======
+    console.log('Form Data:', formData);
+
+    // try {
+    //   const user = await loginUser(formData);
+    //   localStorage.setItem('user', JSON.stringify(user));
+    //   onLogin(user);
+    //   navigate('/feed');
+    // } catch (error) {
+    //   console.error('Login failed:', error);
+    //   alert('Login failed. Please check your credentials and try again.');
+    // }
+    // loginUser(formData.email, formData.password);
+    // Mock login - in a real app, this would authenticate with a backend
+    const mockUser = {
+      id: 1,
+      name: 'John Doe',
+      email: formData.email,
+      role: 'jobseeker',
+      avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
+    };
+    
+    onLogin(mockUser);
+    navigate('/feed');
+>>>>>>> 65052d0618a0bd45dc0beeb3d504dbfaec352e7c
   };
 
   const handleGoogleLogin = () => {
