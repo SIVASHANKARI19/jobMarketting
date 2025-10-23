@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { data, Link, useNavigate } from 'react-router-dom';
 import { Eye, EyeOff, Mail, Lock } from 'lucide-react';
+import { loginUser } from '../api/userApi';
 
 interface LoginPageProps {
   onLogin: (user: any) => void;
@@ -14,9 +15,21 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
   });
   const navigate = useNavigate();
 
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+    console.log('Form Data:', formData);
+
+    // try {
+    //   const user = await loginUser(formData);
+    //   localStorage.setItem('user', JSON.stringify(user));
+    //   onLogin(user);
+    //   navigate('/feed');
+    // } catch (error) {
+    //   console.error('Login failed:', error);
+    //   alert('Login failed. Please check your credentials and try again.');
+    // }
+    // loginUser(formData.email, formData.password);
     // Mock login - in a real app, this would authenticate with a backend
     const mockUser = {
       id: 1,

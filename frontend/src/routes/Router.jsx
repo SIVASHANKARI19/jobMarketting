@@ -5,7 +5,7 @@ import FeedPage from "../pages/Feed";
 import AdminDashboard from "../pages/AdminDashboard";
 import HomePage from "../pages/Home";
 import Resume from "../pages/client/Resume";
-
+import Courses from "../pages/client/Courses";
 const router = (isAuthenticated, currentUser, handleLogin) => [
   {
     path: "/",
@@ -14,6 +14,10 @@ const router = (isAuthenticated, currentUser, handleLogin) => [
   {
     path : '/resume',
     element : isAuthenticated ? <Resume /> : <Navigate to ="/login" />
+  },
+  {
+    path: "/courses",
+    element: isAuthenticated ? <Courses /> : <Navigate to="/login" />,
   },
   {
     path: "/register",
