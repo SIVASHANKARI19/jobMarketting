@@ -6,11 +6,16 @@ import SkillGapAnalyzer from "../pages/skillGapAnalyser/skill_gap";
 import AdminDashboard from "../pages/AdminDashboard";
 import HomePage from "../pages/Home"; // ✅ import your real homepage
 import JobTrendsPage from "../components/JobTrends/JobTrendsPage";
+import Resume from "../pages/client/Resume";
 
 const router = (isAuthenticated, currentUser, handleLogin) => [
   {
     path: "/",
     element: !isAuthenticated ? <HomePage /> : <Navigate to="/feed" />,
+  },
+  {
+    path : '/resume',
+    element : isAuthenticated ? <Resume /> : <Navigate to ="/login" />
   },
   {
     path: "/register",

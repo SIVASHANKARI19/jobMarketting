@@ -6,7 +6,8 @@ import {
   Mail,
   Info,
   FileCheck,
-  TrendingUp
+  TrendingUp,
+  Newspaper
 } from 'lucide-react';
 
 const Sidebar = ({ currentUser }) => {
@@ -16,20 +17,21 @@ const Sidebar = ({ currentUser }) => {
     if (currentUser?.role === 'jobseeker') {
       return [
         { path: '/feed', icon: Home, label: 'Job Feed' },
-        { path: '/job-trends', icon: TrendingUp, label: 'Job Trends' }
-
+        { path: '/job-trends', icon: TrendingUp, label: 'Job Trends' },
+        { path: '/resume' ,icon : Newspaper , label : 'Resume'}
       ];
     } else if (currentUser?.role === 'client') {
       return [
         { path: '/feed', icon: Home, label: 'Dashboard' },
+        { path: '/resume' ,icon : Newspaper , label : 'Resume'}
       ];
     } else if (currentUser?.role === 'admin') {
       return [
         { path: '/admin-dashboard', icon: BarChart3, label: 'Dashboard' },
       ];
     }
-
-    return [{ path: '/feed', icon: Home, label: 'Home' }];
+    
+    // return [{ path: '/feed', icon: Home, label: 'Home' }];
   };
 
   const bottomItems = [
