@@ -23,7 +23,6 @@ const [activeStep, setActiveStep] = useState(() => {
     // Page 2 Professional Background
     skills: "",
     experience: "",
-    currentCompany: "",
     currentPosition: "",
     
     // Page 3 Job Preferences
@@ -117,8 +116,6 @@ const [activeStep, setActiveStep] = useState(() => {
         return true;
       case 4:
         return formData.desiredPosition;
-      case 5:
-        return true; // Optional step
       case 6:
         return true; // Review step
       default:
@@ -152,6 +149,20 @@ const [activeStep, setActiveStep] = useState(() => {
               </div>
               
            
+              
+           <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-700">Role *</label>
+                  <select
+                    name="experience"
+                    value={formData.role}
+                    onChange={handleInputChange}
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  >
+                    <option value="">Select Role :</option>
+                    <option value="fresher">Job Seeker</option>
+                    <option value="1-2">Client</option>
+                  </select>
+                </div>
               
               <div className="space-y-2">
                 <label className="text-sm font-medium text-gray-700">Email Address *</label>

@@ -2,6 +2,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import {
   Home,
+  PlusCircle,
   BarChart3,
   Mail,
   Info,
@@ -17,12 +18,16 @@ const Sidebar = ({ currentUser }) => {
     if (currentUser?.role === 'jobseeker') {
       return [
         { path: '/feed', icon: Home, label: 'Job Feed' },
+        { path: '/courses' ,icon : BookOpen , label : 'Courses'},
+
       ];
     } else if (currentUser?.role === 'client') {
       return [
         { path: '/feed', icon: Home, label: 'Dashboard' },
         { path: '/resume' ,icon : Newspaper , label : 'Resume'},
         { path: '/courses' ,icon : BookOpen , label : 'Courses'},
+        { path: '/post-job', icon: PlusCircle, label: 'Post Job' },
+
       ];
     } else if (currentUser?.role === 'admin') {
       return [
