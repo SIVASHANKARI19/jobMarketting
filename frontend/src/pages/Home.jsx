@@ -80,7 +80,18 @@ const HomePage = () => {
               >
                 Get Started Free
                 <ArrowRight className="w-5 h-5 ml-2 inline" />
-              </Link>
+        
+
+           </Link>
+             <Link
+                to="/skill-gap-analyzer"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl"
+              >
+                Try skillGapAnalyser
+                <ArrowRight className="w-5 h-5 ml-2 inline" />
+        
+
+           </Link>
             </div>
           </div>
         </div>

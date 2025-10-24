@@ -1,0 +1,230 @@
+{
+  "input": {
+    "resume_pdf": "ML-powered_resume_analyser/data/Subiksha_resume.pdf",
+    "jobs_applied": [
+      {
+        "job_id": "JOB1",
+        "job_title": "Business Analyst",
+        "required_skills": [
+          {
+            "skill": "Excel",
+            "level": "Intermediate"
+          },
+          {
+            "skill": "Deep Learning",
+            "level": "Advanced"
+          },
+          {
+            "skill": "Statistics",
+            "level": "Beginner"
+          },
+          {
+            "skill": "AWS",
+            "level": "Intermediate"
+          },
+          {
+            "skill": "Kubernetes",
+            "level": "Advanced"
+          },
+          {
+            "skill": "Data Visualization",
+            "level": "Intermediate"
+          }
+        ]
+      },
+      {
+        "job_id": "JOB2",
+        "job_title": "Cloud Engineer",
+        "required_skills": [
+          {
+            "skill": "Docker",
+            "level": "Beginner"
+          },
+          {
+            "skill": "Power BI",
+            "level": "Intermediate"
+          },
+          {
+            "skill": "Cloud Computing",
+            "level": "Intermediate"
+          },
+          {
+            "skill": "Data Visualization",
+            "level": "Beginner"
+          },
+          {
+            "skill": "Excel",
+            "level": "Advanced"
+          },
+          {
+            "skill": "Deep Learning",
+            "level": "Advanced"
+          }
+        ]
+      },
+      {
+        "job_id": "JOB3",
+        "job_title": "Data Scientist",
+        "required_skills": [
+          {
+            "skill": "Machine Learning",
+            "level": "Advanced"
+          },
+          {
+            "skill": "NLP",
+            "level": "Intermediate"
+          },
+          {
+            "skill": "Kubernetes",
+            "level": "Beginner"
+          },
+          {
+            "skill": "Node.js",
+            "level": "Intermediate"
+          },
+          {
+            "skill": "Data Visualization",
+            "level": "Intermediate"
+          }
+        ]
+      }
+    ]
+  },
+  "output": [
+    {
+      "job_id": "JOB1",
+      "job_title": "Business Analyst",
+      "matching_skills": [],
+      "missing_skills": [
+        "Excel",
+        "Deep Learning",
+        "Statistics",
+        "AWS",
+        "Kubernetes",
+        "Data Visualization"
+      ],
+      "level_variance": [],
+      "accuracy_rate": "100%",
+      "recommended_learning": [
+        {
+          "skill": "Excel",
+          "platform": "edX",
+          "course": "Excel Fundamentals"
+        },
+        {
+          "skill": "Deep Learning",
+          "platform": "edX",
+          "course": "Deep Learning Fundamentals"
+        },
+        {
+          "skill": "Statistics",
+          "platform": "LinkedIn Learning",
+          "course": "Statistics Advanced Training"
+        },
+        {
+          "skill": "AWS",
+          "platform": "LinkedIn Learning",
+          "course": "AWS Intermediate Training"
+        },
+        {
+          "skill": "Kubernetes",
+          "platform": "LinkedIn Learning",
+          "course": "Kubernetes Essential Training"
+        },
+        {
+          "skill": "Data Visualization",
+          "platform": "Coursera",
+          "course": "Data Visualization with Python"
+        }
+      ]
+    },
+    {
+      "job_id": "JOB2",
+      "job_title": "Cloud Engineer",
+      "matching_skills": [],
+      "missing_skills": [
+        "Docker",
+        "Power BI",
+        "Cloud Computing",
+        "Data Visualization",
+        "Excel",
+        "Deep Learning"
+      ],
+      "level_variance": [],
+      "accuracy_rate": "0%",
+      "recommended_learning": [
+        {
+          "skill": "Docker",
+          "platform": "LinkedIn Learning",
+          "course": "Docker Essential Training"
+        },
+        {
+          "skill": "Power BI",
+          "platform": "LinkedIn Learning",
+          "course": "Power BI Essential Training"
+        },
+        {
+          "skill": "Cloud Computing",
+          "platform": "Coursera",
+          "course": "Cloud Computing Concepts"
+        },
+        {
+          "skill": "Data Visualization",
+          "platform": "Coursera",
+          "course": "Data Visualization with Python"
+        },
+        {
+          "skill": "Excel",
+          "platform": "edX",
+          "course": "Excel Fundamentals"
+        },
+        {
+          "skill": "Deep Learning",
+          "platform": "edX",
+          "course": "Deep Learning Fundamentals"
+        }
+      ]
+    },
+    {
+      "job_id": "JOB3",
+      "job_title": "Data Scientist",
+      "matching_skills": [],
+      "missing_skills": [
+        "Machine Learning",
+        "NLP",
+        "Kubernetes",
+        "Node.js",
+        "Data Visualization"
+      ],
+      "level_variance": [],
+      "accuracy_rate": "0%",
+      "recommended_learning": [
+        {
+          "skill": "Machine Learning",
+          "platform": "edX",
+          "course": "Machine Learning Fundamentals"
+        },
+        {
+          "skill": "NLP",
+          "platform": "Coursera",
+          "course": "NLP Specialization"
+        },
+        {
+          "skill": "Kubernetes",
+          "platform": "LinkedIn Learning",
+          "course": "Kubernetes Essential Training"
+        },
+        {
+          "skill": "Node.js",
+          "platform": "Udemy",
+          "course": "Node.js Complete Guide"
+        },
+        {
+          "skill": "Data Visualization",
+          "platform": "Coursera",
+          "course": "Data Visualization with Python"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+model:
+  embedding: all-MiniLM-L6-v2
+  tfidf_max_features: 1000
+matching:
+  fuzzy_threshold: 85
+  level_order: ["Beginner", "Intermediate", "Advanced"]
+recommendations:
+  providers:
+    Excel:
+      platform: edX
+      course: Excel Fundamentals
+    "Power BI":
+      platform: LinkedIn Learning
+      course: Power BI Essential Training
+    "Data Visualization":
+      platform: Coursera
+      course: Data Visualization with Python
+    "Machine Learning":
+      platform: edX
+      course: Machine Learning Fundamentals
+    NLP:
+      platform: Coursera
+      course: NLP Specialization
+    Docker:
+      platform: LinkedIn Learning
+      course: Docker Essential Training
+    Kubernetes:
+      platform: LinkedIn Learning
+      course: Kubernetes Essential Training
+    AWS:
+      platform: LinkedIn Learning
+      course: AWS Intermediate Training
+    "Cloud Computing":
+      platform: Coursera
+      course: Cloud Computing Concepts
+    Statistics:
+      platform: LinkedIn Learning
+      course: Statistics Advanced Training
+    "Deep Learning":
+      platform: edX
+      course: Deep Learning Fundamentals
+    "Node.js":
+      platform: Udemy
+      course: Node.js Complete Guide
