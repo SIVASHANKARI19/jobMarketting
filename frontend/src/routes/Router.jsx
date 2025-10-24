@@ -8,6 +8,10 @@ import HomePage from "../pages/Home"; // ✅ import your real homepage
 import JobTrendsPage from "../components/JobTrends/JobTrendsPage";
 import CourseRecommendationsPage from "../pages/CourseRecommendations";
 import Resume from "../pages/client/Resume";
+import ContactUsPage from "../pages/ContactUsPage";
+import AboutUsPage from "../pages/AboutUsPage";
+import TermsPage from "../pages/TermsPage";
+import PostJobPage from "../pages/JobPostPage";
 
 const router = (isAuthenticated, currentUser, handleLogin) => [
   {
@@ -40,7 +44,17 @@ const router = (isAuthenticated, currentUser, handleLogin) => [
 },
   ...(isAuthenticated
     ? [
-        { path: "/feed", element: <FeedPage /> },
+        { path: "/feed", element: <FeedPage /> ,
+        },
+        {
+          path:"/contact",element:<ContactUsPage/>
+        },
+        {
+ path:"/about",element:<AboutUsPage/>
+        },
+        {
+           path:"/terms",element:<TermsPage/>
+        },
 
         ...(currentUser?.role === "admin"
           ? [{ path: "/admin-dashboard", element: <AdminDashboard /> }]
@@ -58,6 +72,8 @@ const router = (isAuthenticated, currentUser, handleLogin) => [
     path: '/courses',
     element: <CourseRecommendationsPage />,
   },
+    ...(currentUser?.role ==="client" ?
+    [{path:"/post-job",element:<PostJobPage />}]:[]),
 ];
 
 export default router;

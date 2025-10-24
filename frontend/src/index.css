@@ -11,9 +11,9 @@
   display: none;
 }
 
-/* For Firefox */
-.hide-scrollbar {
-  scrollbar-width: thin;
+
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 0px;
 }
 
-/* For IE, Edge (legacy) - not needed in most cases */

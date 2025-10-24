@@ -2,6 +2,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import {
   Home,
+  PlusCircle,
   BarChart3,
   Mail,
   Info,
@@ -23,7 +24,9 @@ const Sidebar = ({ currentUser }) => {
     } else if (currentUser?.role === 'client') {
       return [
         { path: '/feed', icon: Home, label: 'Dashboard' },
-        { path: '/resume' ,icon : Newspaper , label : 'Resume'}
+        { path: '/resume' ,icon : Newspaper , label : 'Resume'},
+        { path: '/post-job', icon: PlusCircle, label: 'Post Job' },
+
       ];
     } else if (currentUser?.role === 'admin') {
       return [

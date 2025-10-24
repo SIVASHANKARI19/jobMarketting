@@ -3,7 +3,6 @@ import ResumeUpload from '../../components/SkillGap/ResumeUpload';
 import SkillAnalysis from '../../components/SkillGap/SkillAnalysis';
 import JobMatching from '../../components/SkillGap/JobMatching';
 import LearningRecommendations from '../../components/SkillGap/LearningRecommentdations';
-import ChatbotCard from '../../components/SkillGap/ChatbotCard';
 import  {generateMockAnalysis} from '../../utils/mockData';
 // CourseRecommendationsGrid is available on its own page; use LearningRecommendations component below
 
@@ -56,17 +55,6 @@ function App() {
        
       </main>
 
-    
-      <ChatbotCard
-        title="Career AI Assistant"
-        subtitle="Ask anything about resumes, skills, jobs, and learning"
-        accent="blue"
-        suggestions={[
-          'How can I increase my resume score?',
-          'What jobs match my skills?',
-          'Recommend courses for React',
-        ]}
-      />
     </div>
   );
 }
