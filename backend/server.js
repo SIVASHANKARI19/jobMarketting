@@ -33,6 +33,7 @@ const trendsRoutes = require("./routes/trends.routes");
 app.use("/api/trends", trendsRoutes);
 
 const PORT = 3000;
+<<<<<<< HEAD
 app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));
 =======
 // Ensure Resume_Analyser folder exists
@@ -45,3 +46,6 @@ if (!fs.existsSync(resultFolder)) {
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 >>>>>>> 553b45a276abc22758aa5b3752085055b232a6e5
+=======
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+>>>>>>> 65052d0618a0bd45dc0beeb3d504dbfaec352e7c

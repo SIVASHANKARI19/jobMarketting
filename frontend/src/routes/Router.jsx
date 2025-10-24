@@ -6,10 +6,12 @@ import SkillGapAnalyzer from "../pages/skillGapAnalyser/skill_gap";
 import AdminDashboard from "../pages/AdminDashboard";
 import HomePage from "../pages/Home"; // ✅ import your real homepage
 import JobTrendsPage from "../components/JobTrends/JobTrendsPage";
-
 import Resume from "../pages/client/Resume";
-
 import TestIntegration from "../test-integration";
+import ContactUsPage from "../pages/ContactUsPage";
+import AboutUsPage from "../pages/AboutUsPage";
+import TermsPage from "../pages/TermsPage";
+import Courses from "../pages/client/Courses";
 
 const router = (isAuthenticated, currentUser, handleLogin) => [
   {
@@ -19,6 +21,10 @@ const router = (isAuthenticated, currentUser, handleLogin) => [
   {
     path : '/resume',
     element : isAuthenticated ? <Resume /> : <Navigate to ="/login" />
+  },
+  {
+    path: "/courses",
+    element: isAuthenticated ? <Courses /> : <Navigate to="/login" />,
   },
   {
     path: "/register",
@@ -42,7 +48,17 @@ const router = (isAuthenticated, currentUser, handleLogin) => [
   },
   ...(isAuthenticated
     ? [
-        { path: "/feed", element: <FeedPage /> },
+        { path: "/feed", element: <FeedPage /> ,
+        },
+        {
+          path:"/contact",element:<ContactUsPage/>
+        },
+        {
+ path:"/about",element:<AboutUsPage/>
+        },
+        {
+           path:"/terms",element:<TermsPage/>
+        },
 
         ...(currentUser?.role === "admin"
           ? [{ path: "/admin-dashboard", element: <AdminDashboard /> }]

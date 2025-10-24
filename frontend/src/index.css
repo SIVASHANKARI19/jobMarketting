@@ -11,7 +11,12 @@
   display: none;
 }
 
-/* For Firefox */
-.hide-scrollbar {
-  scrollbar-width: thin;
+
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 0px;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 34bc275bec8519787d78172ac14b5cb5c3695c86
