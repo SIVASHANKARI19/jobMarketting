@@ -18,11 +18,9 @@ const [activeStep, setActiveStep] = useState(() => {
     email: "",
     phone: "",
     dateOfBirth: "",
-<<<<<<< HEAD
     city: "",
     
     // Page 2 Professional Background
-=======
     password:"",
     role:"",
     
@@ -30,7 +28,6 @@ const [activeStep, setActiveStep] = useState(() => {
     address: "",
     
     // Professional Info
->>>>>>> 34bc275bec8519787d78172ac14b5cb5c3695c86
     skills: "",
     experience: "",
     currentPosition: "",
@@ -38,16 +35,13 @@ const [activeStep, setActiveStep] = useState(() => {
     // Page 3 Job Preferences
     desiredPosition: "",
     expectedSalary: "",
-<<<<<<< HEAD
     linkedin: "",
     github:"",
-=======
     
     // Additional Info
     linkedIn: "",
     github:"",
     resume: ""
->>>>>>> 34bc275bec8519787d78172ac14b5cb5c3695c86
   });
 
   const steps = [
@@ -100,7 +94,6 @@ const [activeStep, setActiveStep] = useState(() => {
       name: "",
       email: "",
       phone: "",
-<<<<<<< HEAD
       dateOfBirth: "",
       city: "",
        // Page 2 Professional Background
@@ -114,7 +107,6 @@ const [activeStep, setActiveStep] = useState(() => {
     expectedSalary: "",
     linkedin: "",
     github:"",
-=======
       gender: "",
       address: "",
       city: "",
@@ -131,7 +123,6 @@ const [activeStep, setActiveStep] = useState(() => {
       resume: "",
       password:"",
       role:""
->>>>>>> 34bc275bec8519787d78172ac14b5cb5c3695c86
     });
   }
 
@@ -144,7 +135,6 @@ const [activeStep, setActiveStep] = useState(() => {
   function isStepValid(stepIndex) {
     switch (stepIndex) {
       case 0:
-<<<<<<< HEAD
         return formData.name && formData.email && formData.phone;
       case 1:
         return formData.skills && formData.experience;
@@ -153,12 +143,10 @@ const [activeStep, setActiveStep] = useState(() => {
       case 3:
         return true;
       case 4:
-=======
         return formData.firstName && formData.email && formData.phone;
       case 1:
         return formData.skills && formData.experience;
       case 2:
->>>>>>> 34bc275bec8519787d78172ac14b5cb5c3695c86
         return formData.desiredPosition;
       case 6:
         return true; // Review step
@@ -184,23 +172,18 @@ const [activeStep, setActiveStep] = useState(() => {
                 <label className="text-sm font-medium text-gray-700"> Name *</label>
                 <input
                   type="text"
-<<<<<<< HEAD
                   name="name"
                   placeholder="Name"
                   value={formData.name}
-=======
                   name="firstName"
                   placeholder="Name"
                   value={formData.firstName}
->>>>>>> 34bc275bec8519787d78172ac14b5cb5c3695c86
                   onChange={handleInputChange}
                   className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                 />
               </div>
-<<<<<<< HEAD
               
            
-=======
               <div className="space-y-2">
                 <label className="text-sm font-medium text-gray-700"> Password *</label>
                 <input
@@ -212,7 +195,6 @@ const [activeStep, setActiveStep] = useState(() => {
                   className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                 />
               </div>
->>>>>>> 34bc275bec8519787d78172ac14b5cb5c3695c86
               
            <div className="space-y-2">
                   <label className="text-sm font-medium text-gray-700">Role *</label>
@@ -384,15 +366,12 @@ const [activeStep, setActiveStep] = useState(() => {
                   <label className="text-sm font-medium text-gray-700">LinkedIn Profile</label>
                   <input
                     type="text"
-<<<<<<< HEAD
                     name="linkedin"
                     placeholder="LinkedIn Profile"
                     value={formData.linkedin}
-=======
                     name="LinkedIn Profile"
                     placeholder="LinkedIn Profile"
                     value={formData.linkedIn}
->>>>>>> 34bc275bec8519787d78172ac14b5cb5c3695c86
                     onChange={handleInputChange}
                     className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   />
@@ -401,11 +380,8 @@ const [activeStep, setActiveStep] = useState(() => {
                   <label className="text-sm font-medium text-gray-700">Github Profile</label>
                   <input
                     type="text"
-<<<<<<< HEAD
                     name="github"
-=======
                     name="LinkedIn Profile"
->>>>>>> 34bc275bec8519787d78172ac14b5cb5c3695c86
                     placeholder="GitHub Profile"
                     value={formData.github}
                     onChange={handleInputChange}
@@ -473,11 +449,9 @@ const [activeStep, setActiveStep] = useState(() => {
                   <div className="space-y-1 text-sm">
                      <p><span className="font-medium">Desired Position:</span> {formData.desiredPosition}</p>
                     <p><span className="font-medium">Portfolio:</span> {formData.portfolio}</p>
-<<<<<<< HEAD
                     <p><span className="font-medium">LinkedIn:</span> {formData.linkedin}</p>
-=======
+
                     <p><span className="font-medium">LinkedIn:</span> {formData.linkedIn}</p>
->>>>>>> 34bc275bec8519787d78172ac14b5cb5c3695c86
                     <p><span className="font-medium">GitHub:</span> {formData.github}</p>
                   </div>
                 </div>

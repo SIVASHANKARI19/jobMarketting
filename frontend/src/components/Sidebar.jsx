@@ -6,13 +6,9 @@ import {
   Mail,
   Info,
   FileCheck,
-<<<<<<< HEAD
   TrendingUp,
-  Newspaper
-=======
   Newspaper,
   BookOpen
->>>>>>> 65052d0618a0bd45dc0beeb3d504dbfaec352e7c
 } from 'lucide-react';
 
 const Sidebar = ({ currentUser }) => {
