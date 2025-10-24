@@ -1,0 +1,39 @@
+Amy v
+
+vamy@gmail.com
+
+6374129588
+
+Sathyamangalam , Erode
+
+https://www.linkedin.com/in/amyv/
+
+https://amyv
+
+Passionate and technically driven Engineering student specializing in software and web development. Skilled in building responsive, scalable web applications using modern technologies such as JavaScript, React, Node.js, and RESTful APIs. Experienced in backend integration, database design, and performance optimization to deliver efficient full-stack solutions. Familiar with AI model workflows and automation, bringing an analytical mindset to problem-solving and code design. Committed to continuous learning, clean coding practices, and developing impactful digital experiences that bridge engineering principles with real-world software innovation.
+
+Bannari Amman Institute of Technology
+B.E
+Communication and Electronics
+Sathyamangalam
+8.4/10
+
+Programming Languages:
+Python, JavaScript (ES6+), C/C++, Java
+
+Web Technologies:
+HTML5, CSS3, React.js, Node.js, Express.js
+
+Database Management::
+MySQL, MongoDB, PostgreSQL, Sequelize ORM
+API Development:
+RESTful APIs, JSON, Axios, JWT Authentication
+
+Version Control & Tools:
+Git, GitHub, VS Code, Postman
+
+AI & Data Handling (Foundational):
+NumPy, Pandas, Scikit-learn, TensorFlow (basics), Model Training & Evaluation
+
+Other Skills:
+Problem Solving, Data Structures & Algorithms, UI/UX Fundamentals, Responsive Design

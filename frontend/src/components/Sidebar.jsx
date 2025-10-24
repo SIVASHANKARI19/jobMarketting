@@ -8,7 +8,8 @@ import {
   Info,
   FileCheck,
   TrendingUp,
-  Newspaper
+  Newspaper,
+  BookOpen
 } from 'lucide-react';
 
 const Sidebar = ({ currentUser }) => {
@@ -19,12 +20,14 @@ const Sidebar = ({ currentUser }) => {
       return [
         { path: '/feed', icon: Home, label: 'Job Feed' },
         { path: '/job-trends', icon: TrendingUp, label: 'Job Trends' },
-        { path: '/resume' ,icon : Newspaper , label : 'Resume'}
+        { path: '/resume' ,icon : Newspaper , label : 'Resume'},
+        { path: '/courses' ,icon : BookOpen , label : 'Courses'},
+
       ];
     } else if (currentUser?.role === 'client') {
       return [
         { path: '/feed', icon: Home, label: 'Dashboard' },
-        { path: '/resume' ,icon : Newspaper , label : 'Resume'},
+        { path: '/courses' ,icon : BookOpen , label : 'Courses'},
         { path: '/post-job', icon: PlusCircle, label: 'Post Job' },
 
       ];

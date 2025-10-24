@@ -18,13 +18,9 @@ const [activeStep, setActiveStep] = useState(() => {
     email: "",
     phone: "",
     dateOfBirth: "",
-    password:"",
-    role:"",
+    city: "",
     
-    // Location Info
-    address: "",
-    
-    // Professional Info
+    // Page 2 Professional Background
     skills: "",
     experience: "",
     currentPosition: "",
@@ -32,11 +28,8 @@ const [activeStep, setActiveStep] = useState(() => {
     // Page 3 Job Preferences
     desiredPosition: "",
     expectedSalary: "",
-    
-    // Additional Info
-    linkedIn: "",
+    linkedin: "",
     github:"",
-    resume: ""
   });
 
   const steps = [
@@ -89,22 +82,19 @@ const [activeStep, setActiveStep] = useState(() => {
       name: "",
       email: "",
       phone: "",
-      gender: "",
-      address: "",
+      dateOfBirth: "",
       city: "",
-      state: "",
-      skills: "",
-      experience: "",
-      currentCompany: "",
-      currentPosition: "",
-      desiredPosition: "",
-      preferredLocation: "",
-      expectedSalary: "",
-      linkedIn: "",
-      github:"",
-      resume: "",
-      password:"",
-      role:""
+       // Page 2 Professional Background
+    skills: "",
+    experience: "",
+    currentCompany: "",
+    currentPosition: "",
+    
+    // Page 3 Job Preferences
+    desiredPosition: "",
+    expectedSalary: "",
+    linkedin: "",
+    github:"",
     });
   }
 
@@ -117,10 +107,14 @@ const [activeStep, setActiveStep] = useState(() => {
   function isStepValid(stepIndex) {
     switch (stepIndex) {
       case 0:
-        return formData.firstName && formData.email && formData.phone;
+        return formData.name && formData.email && formData.phone;
       case 1:
         return formData.skills && formData.experience;
       case 2:
+        return formData.desiredPosition;
+      case 3:
+        return true;
+      case 4:
         return formData.desiredPosition;
       case 6:
         return true; // Review step
@@ -146,24 +140,15 @@ const [activeStep, setActiveStep] = useState(() => {
                 <label className="text-sm font-medium text-gray-700"> Name *</label>
                 <input
                   type="text"
-                  name="firstName"
+                  name="name"
                   placeholder="Name"
-                  value={formData.firstName}
+                  value={formData.name}
                   onChange={handleInputChange}
                   className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                 />
               </div>
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-700"> Password *</label>
-                <input
-                  type="text"
-                  name="password"
-                  placeholder="Password"
-                  value={formData.password}
-                  onChange={handleInputChange}
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                />
-              </div>
+              
+           
               
            <div className="space-y-2">
                   <label className="text-sm font-medium text-gray-700">Role *</label>
@@ -335,9 +320,9 @@ const [activeStep, setActiveStep] = useState(() => {
                   <label className="text-sm font-medium text-gray-700">LinkedIn Profile</label>
                   <input
                     type="text"
-                    name="LinkedIn Profile"
+                    name="linkedin"
                     placeholder="LinkedIn Profile"
-                    value={formData.linkedIn}
+                    value={formData.linkedin}
                     onChange={handleInputChange}
                     className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   />
@@ -346,7 +331,7 @@ const [activeStep, setActiveStep] = useState(() => {
                   <label className="text-sm font-medium text-gray-700">Github Profile</label>
                   <input
                     type="text"
-                    name="LinkedIn Profile"
+                    name="github"
                     placeholder="GitHub Profile"
                     value={formData.github}
                     onChange={handleInputChange}
@@ -414,7 +399,7 @@ const [activeStep, setActiveStep] = useState(() => {
                   <div className="space-y-1 text-sm">
                      <p><span className="font-medium">Desired Position:</span> {formData.desiredPosition}</p>
                     <p><span className="font-medium">Portfolio:</span> {formData.portfolio}</p>
-                    <p><span className="font-medium">LinkedIn:</span> {formData.linkedIn}</p>
+                    <p><span className="font-medium">LinkedIn:</span> {formData.linkedin}</p>
                     <p><span className="font-medium">GitHub:</span> {formData.github}</p>
                   </div>
                 </div>

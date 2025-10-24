@@ -8,6 +8,7 @@ import HomePage from "../pages/Home"; // ✅ import your real homepage
 import JobTrendsPage from "../components/JobTrends/JobTrendsPage";
 import CourseRecommendationsPage from "../pages/CourseRecommendations";
 import Resume from "../pages/client/Resume";
+import Courses from "../pages/client/Courses";
 import ContactUsPage from "../pages/ContactUsPage";
 import AboutUsPage from "../pages/AboutUsPage";
 import TermsPage from "../pages/TermsPage";
@@ -21,6 +22,10 @@ const router = (isAuthenticated, currentUser, handleLogin) => [
   {
     path : '/resume',
     element : isAuthenticated ? <Resume /> : <Navigate to ="/login" />
+  },
+  {
+    path: "/courses",
+    element: isAuthenticated ? <Courses /> : <Navigate to="/login" />,
   },
   {
     path: "/register",
@@ -69,7 +74,7 @@ const router = (isAuthenticated, currentUser, handleLogin) => [
     element: <JobTrendsPage />,
   },
   {
-    path: '/courses',
+    path: '/courses-feed',
     element: <CourseRecommendationsPage />,
   },
     ...(currentUser?.role ==="client" ?

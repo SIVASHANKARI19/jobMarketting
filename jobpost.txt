@@ -1,0 +1,27 @@
+Title : Junior Web Developer
+
+Location : Coimbatore
+
+Salary : 6-8 Lakhs
+
+Experience : Entry level 
+
+Skills : Full stack development , API , Cloud
+
+Job description :
+We are looking for a Junior Web Developer to help build and maintain websites and web applications. You will work with HTML, CSS, and JavaScript, and assist in implementing responsive designs and fixing bugs. Basic knowledge of front-end frameworks and version control is a plus. This role is perfect for someone eager to learn and grow in a hands-on web development environment.
+
+Requirements : 
+Basic understanding of front-end technologies: HTML, CSS, JavaScript.
+Familiarity with front-end frameworks (React, Angular, Vue) is a plus.
+Knowledge of responsive design and cross-browser compatibility.
+Understanding of version control systems (e.g., Git).
+Strong problem-solving skills and attention to detail.
+Eagerness to learn and grow as a developer.
+Good communication and teamwork abilities.
+
+Benefits & Perks : 
+Mentorship from experienced developers.
+Opportunity to work on real-world projects.
+Flexible working hours / remote work options.
+A collaborative, growth-focused environment.

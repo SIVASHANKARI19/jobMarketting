@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { PlusCircle, MapPin, DollarSign, Clock, Users } from 'lucide-react';
 
 const PostJobPage = () => {
+  const [notification, setNotification] = useState(null);
+
   const [formData, setFormData] = useState({
     title: '',
     description: '',
@@ -14,12 +16,47 @@ const PostJobPage = () => {
     tags: '',
     benefits: ''
   });
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Job posted:', formData);
-    alert('Job posted successfully!');
-  };
+  try {
+    const response = await fetch('/api/jobs', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData),
+    });
+
+    if (!response.ok) throw new Error('Network response was not ok');
+    
+    const data = await response.json();
+    console.log('Job posted:', data);
+
+    // Show success notification
+    setNotification('Job posted successfully!');
+
+    // Clear the form if needed
+    setFormData({
+      title: '',
+      description: '',
+      requirements: '',
+      salary: '',
+      type: 'Full-time',
+      location: '',
+      remote: false,
+      experience: '',
+      tags: '',
+      benefits: ''
+    });
+
+    // Hide notification after 3 seconds
+    setTimeout(() => setNotification(null), 3000);
+
+  } catch (error) {
+    console.error('Error posting job:', error);
+    setNotification('Failed to post job.');
+    setTimeout(() => setNotification(null), 3000);
+  }
+};
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -225,6 +262,34 @@ const PostJobPage = () => {
             </div>
           </div>
         </form>
+        {notification && (
+  <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+    <div className="bg-white rounded-2xl shadow-2xl p-8 w-11/12 max-w-md text-center animate-fade-in">
+      <div className="flex justify-center mb-4">
+        {/* Green Tick Icon */}
+        <svg
+          className="w-16 h-16 text-green-500"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          viewBox="0 0 24 24"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+        </svg>
+      </div>
+      <h3 className="text-xl font-bold text-gray-800 mb-2">Job Posted Successfully!</h3>
+      <p className="text-gray-600 mb-6">Your job has been added to the listings.</p>
+      <button
+        onClick={() => setNotification(false)}
+        className="px-6 py-2 bg-green-500 text-white rounded-xl hover:bg-green-600 transition-colors"
+      >
+        Close
+      </button>
+    </div>
+  </div>
+)}
+
+
       </div>
     </div>
   );

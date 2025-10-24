@@ -36,7 +36,7 @@ const LearningRecommendations = () => {
           Personalized course recommendations to close your skill gaps and advance your career
         </p>
         <div className="mt-4">
-          <Link to="/courses" className="inline-flex items-center px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors text-sm">
+          <Link to="/courses-feed" className="inline-flex items-center px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors text-sm">
             View all course recommendations
           </Link>
         </div>
