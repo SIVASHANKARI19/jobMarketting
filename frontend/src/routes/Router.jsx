@@ -7,6 +7,7 @@ import HomePage from "../pages/Home"; // ✅ import your real homepage
 import ContactUsPage from "../pages/ContactUsPage";
 import AboutUsPage from "../pages/AboutUsPage";
 import TermsPage from "../pages/TermsPage";
+import PostJobPage from "../pages/JobPostPage";
 
 const router = (isAuthenticated, currentUser, handleLogin) => [
   {
@@ -50,6 +51,8 @@ const router = (isAuthenticated, currentUser, handleLogin) => [
         { path: "*", element: <Navigate to="/feed" /> },
       ]
     : [{ path: "*", element: <Navigate to="/" /> }]),
+    ...(currentUser?.role ==="client" ?
+    [{path:"/post-job",element:<PostJobPage />}]:[]),
 ];
 
 export default router;
