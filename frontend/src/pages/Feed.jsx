@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState ,useEffect} from 'react';
 import {
   MapPin, Clock, Bookmark, ExternalLink, Filter, ToggleLeft, ToggleRight, Heart,
   MessageSquare, Share2, Eye, TrendingUp, Star, Users, Building2, FileText, Check,X
@@ -7,9 +7,54 @@ import {
 import jobsData from '../data/jobs.json';
 import companiesData from '../data/companies.json';
 import JobDialog from "../components/DialogBox";
-
 const FeedPage = () => {
-  const [jobs] = useState(jobsData);
+  
+  const images = [
+  "https://images.unsplash.com/photo-1517430816045-df4b7de11d1d?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y29tcHV0ZXJzfGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=600",
+  "https://plus.unsplash.com/premium_photo-1678566154673-a728037f3f00?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8Y29tcHV0ZXJzfGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=600",
+  "https://images.unsplash.com/photo-1580920461931-fcb03a940df5?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGNvbXB1dGVyc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=600",
+  "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGNvbXB1dGVyc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=600",
+  "https://media.istockphoto.com/id/2209114464/photo/business-performance-checklist-businessman-using-laptop-online-survey-filling-out-check.webp?a=1&b=1&s=612x612&w=0&k=20&c=cgixNCC0DpueQNtPTW60c4G-rh3gfjMylqzjAK9xOJA=",
+  "https://images.unsplash.com/photo-1453928582365-b6ad33cbcf64?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjZ8fGNvbXB1dGVyc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=600",
+  "https://images.unsplash.com/photo-1596725858508-70543890c732?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzV8fGNvbXB1dGVyc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=600",
+  "https://images.unsplash.com/photo-1485988412941-77a35537dae4?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDN8fGNvbXB1dGVyc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=600",
+  "https://images.unsplash.com/photo-1627281795244-0f5db916344a?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTJ8fGNvbXB1dGVyc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=600",
+  "https://images.unsplash.com/photo-1560762484-813fc97650a0?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTl8fGNvbXB1dGVyc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=600",
+]
+const [jobs, setJobs] = useState(jobsData);
+// Inside FeedPage component, before return
+const fetchJobImage = async (index, keywords = "computers") => {
+  try {
+    // Use Unsplash Source with a stable query for 'computers' and a sig param
+    // to get a different image per index while staying within Unsplash source API
+    const url = `https://source.unsplash.com/400x400/?${keywords}&sig=${index}`;
+
+    // Optional: Check if image exists
+    const response = await fetch(url, { method: "HEAD" });
+    if (response.ok) return url;
+    else return `https://source.unsplash.com/400x400/?computers`; // fallback
+  } catch (error) {
+    console.error("Failed to fetch image:", error);
+    return `https://source.unsplash.com/400x400/?computers`; // fallback
+  }
+};
+const [jobImages, setJobImages] = useState({});
+useEffect(() => {
+  if (!jobs || jobs.length === 0) return;
+
+  const loadImages = async () => {
+    const images = {};
+    for (let i = 0; i < jobs.length; i++) {
+      images[jobs[i].id] = await fetchJobImage(i); // index ensures different image
+    }
+    setJobImages(images);
+  };
+
+  loadImages();
+}, [jobs]);
+
+    const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [followStates, setFollowStates] = useState({});
   const [companies] = useState(companiesData);
   const [filters, setFilters] = useState({
@@ -60,7 +105,28 @@ const FeedPage = () => {
     );
   });
 
+  const getJobImageUrl = (index) =>
+    `https://source.unsplash.com/400x400/?computers&sig=${index}`;
+
   const trendingCompanies = companies.slice(0, 5);
+    useEffect(() => {
+    const fetchJobs = async () => {
+      try {
+        const response = await fetch('http://localhost:3000/api/jobs');
+        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+        const data = await response.json();
+        setJobs(data);
+      } catch (err) {
+        console.error('Error fetching jobs:', err);
+        setError('Failed to load jobs. Please try again later.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchJobs();
+  }, []);
+  
 
   return (
     <div className="min-h-screen  bg-gray-50">
@@ -75,7 +141,7 @@ const FeedPage = () => {
               <div className="absolute top-0 right-0 w-64 h-64 bg-white opacity-5 rounded-full -mr-32 -mt-32" />
               <div className="absolute bottom-0 left-0 w-48 h-48 bg-white opacity-5 rounded-full -ml-24 -mb-24" />
               <div className="relative z-10">
-                <h1 className="text-3xl font-bold mb-2">Good morning! 👋</h1>
+                <h1 className="text-3xl font-bold mb-2">Good Evening! 👋</h1>
                 <p className="text-blue-100 text-lg">Ready to find your next opportunity?</p>
                 <div className="flex items-center space-x-6 mt-6">
                   <div className="flex items-center space-x-2">
@@ -153,20 +219,26 @@ const FeedPage = () => {
 
             {/* Job Cards */}
             <div className="space-y-6">
-               {filteredJobs.map((job) => {
+              
+               {filteredJobs.map((job ,index) => {
           const company = companies.find((c) => c.id === job.companyId);
+          const img = images[index % images.length];
           return (
             <div key={job.id} className="bg-white rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl group transition-all">
               {/* Card content same as before */}
               <div className="p-8">
                 {/* Top Section */}
                 <div className="flex items-start justify-between">
-                  <div className="flex items-start space-x-4">
-                    <img
-                      src={company?.logo}
-                      alt={company?.name}
-                      className="w-20 h-20 rounded-2xl object-cover border-2 border-gray-100 group-hover:border-blue-200"
-                    />
+                  <div className="flex items-start space-x-6">
+                  <img
+              src={img}
+              alt="Tech Image"
+              className="w-40 h-40 rounded-2xl object-cover border-2 border-gray-100"
+              onError={(e) => (e.target.src = "https://via.placeholder.com/400")}
+            />
+
+
+
                     <div>
                       <h3 className="text-2xl font-bold text-gray-800 group-hover:text-blue-600">
                         {job.title}
@@ -185,11 +257,20 @@ const FeedPage = () => {
                         </span>
                       </div>
                       <div className="flex flex-wrap gap-2 mb-2">
-                        {job.tags.map((tag) => (
-                          <span key={tag} className="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm">
-                            {tag}
-                          </span>
-                        ))}
+                        {Array.isArray(job.tags)
+  ? job.tags.map((tag) => (
+      <span key={tag} className="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm">
+        {tag}
+      </span>
+    ))
+  : typeof job.tags === "string" && job.tags.length > 0
+  ? job.tags.split(",").map((tag) => (
+      <span key={tag.trim()} className="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm">
+        {tag.trim()}
+      </span>
+    ))
+  : null}
+
                       </div>
                       <p className="text-gray-700 mb-4">{job.description}</p>
                       <p className="text-xl font-bold text-blue-600">{job.salary}</p>

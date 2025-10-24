@@ -2,6 +2,7 @@ import { useState, useMemo } from "react";
 import { Routes, Route } from "react-router-dom"; // ⬅️ no BrowserRouter here
 import Header from "./components/TopNavBar";
 import Sidebar from "./components/Sidebar";
+import ChatbotCard from "./components/SkillGap/ChatbotCard";
 import usersData from "./data/users.json";
 import router from "./routes/Router";
 import SkillGapAnalyser from "./components/SkillGap/SkillAnalysis"; // Skill Gap component
@@ -54,25 +55,28 @@ function App() {
           </>
         )}
 
-        {/* Routes container with proper sidebar offset */}
-        <div className={isAuthenticated ? "ml-64 pt-16" : ""}>
-          <Routes>
-            {routes.map((route, idx) => (
-              <Route key={idx} path={route.path} element={route.element} />
-            ))}
-
-            {/* Skill Gap Analyser Route */}
-            {isAuthenticated && (
-              <Route
-                path="/skill-gap-analyser"
-                element={<SkillGapAnalyser />}
-              />
-            )}
-          </Routes>
-        </div>
+      <div className={isAuthenticated ? "ml-64 pt-16" : ""}>
+        <Routes>
+          {routes.map((route, idx) => (
+            <Route key={idx} path={route.path} element={route.element} />
+          ))}
+        </Routes>
+        {/* Global chatbot that appears on every page */}
+        <ChatbotCard
+          title="Career AI Assistant"
+          subtitle="Ask anything about resumes, skills, jobs, and learning"
+          accent="blue"
+          suggestions={[
+            'How can I increase my resume score?',
+            'What jobs match my skills?',
+            'Recommend courses for React',
+          ]}
+        />
       </div>
+       </div>
     </ErrorBoundary>
-  );
+  )
 }
+  
 
 export default App;

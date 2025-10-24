@@ -1,5 +1,7 @@
 // components/JobDialog.jsx
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
+
 import { 
   X, 
   MapPin, 
@@ -18,6 +20,9 @@ import {
   Eye
 } from 'lucide-react';
 
+ 
+
+
 // Custom CSS for hiding scrollbar
 const scrollbarStyles = `
   .scrollbar-hide {
@@ -35,6 +40,7 @@ const JobDialog = ({ open, onClose, job, type }) => {
     experience: '',
     availability: '',
   });
+   const navigate = useNavigate();
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [applicationSubmitted, setApplicationSubmitted] = useState(false);
 
@@ -66,6 +72,8 @@ const JobDialog = ({ open, onClose, job, type }) => {
         return 'bg-gray-50 text-gray-700 border-gray-200';
     }
   };
+
+  
 
   return (
     <div>
@@ -298,6 +306,12 @@ const JobDialog = ({ open, onClose, job, type }) => {
                   <span>Application deadline: 30 days from posting</span>
                 </div>
                 <div className="flex items-center gap-3">
+                   <button 
+                    onClick={() => navigate("/skill-gap-analyzer")}
+                    className="px-6 py-2 border bg-blue-600 text-white rounded-xl font-medium"
+                  >
+                    Resume Analyser
+                  </button>
                   <button 
                     onClick={onClose}
                     className="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors font-medium"
@@ -310,7 +324,7 @@ const JobDialog = ({ open, onClose, job, type }) => {
                       className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium flex items-center gap-2"
                     >
                       <Send className="h-4 w-4" />
-                      Submit Application
+                      Submit
                     </button>
                   )}
                 

@@ -1,12 +1,13 @@
 import axios from "axios";
 
 const apiClient = axios.create({
-  baseURL: "http://localhost:3000/api",
+  baseURL: "http://localhost:3000/api", // base URL for all requests
   headers: {
-    "Content-Type": "application/json",
+    "Content-Type": "application/json", // default JSON headers
   },
 });
 
+// Intercept responses to catch errors globally
 apiClient.interceptors.response.use(
   (response) => response,
   (error) => {

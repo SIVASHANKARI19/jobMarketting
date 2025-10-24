@@ -24,10 +24,10 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] flex flex-col items-center text-white p-6">
+    <div className="min-h-screen flex flex-col items-center text-white p-6">
       {/* Header */}
       <header className="mt-10 text-center">
-        <h1 className="text-5xl font-extrabold tracking-tight mb-2 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-300">
+        <h1 className="text-5xl font-extrabold tracking-tight mb-2 text-[#144fed]">
           AI Course Recommender
         </h1>
         <p className="text-gray-400 text-lg mb-10">
@@ -36,17 +36,17 @@ export default function App() {
       </header>
 
       {/* Input Section */}
-      <div className="w-full max-w-3xl flex items-center justify-center mb-10 bg-slate-800 rounded-2xl shadow-xl overflow-hidden">
+      <div className="w-full max-w-3xl black flex items-center justify-center mb-10 rounded-2xl shadow-xl overflow-hidden border border-black/20">
         <input
           type="text"
           value={skills}
           onChange={(e) => setSkills(e.target.value)}
           placeholder="Type your skills (e.g. Python, SQL, Data Analysis)"
-          className="flex-1 bg-transparent text-white placeholder-gray-400 px-6 py-4 text-lg outline-none"
+          className="flex-1 bg-transparent text-black placeholder-gray-400 px-6  text-lg outline-none"
         />
         <button
           onClick={fetchRecommendations}
-          className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:opacity-90 transition-all px-8 py-4 font-semibold"
+          className="bg-[#144fed] hover:opacity-90 transition-all px-8 py-4 font-semibold"
         >
           {loading ? "Loading..." : "Recommend"}
         </button>
@@ -123,9 +123,7 @@ export default function App() {
       </div>
 
       {/* Footer */}
-      <footer className="mt-20 text-gray-500 text-sm">
-        © {new Date().getFullYear()} AI Course Finder — Built with Flask + React
-      </footer>
+    
     </div>
   );
 }
