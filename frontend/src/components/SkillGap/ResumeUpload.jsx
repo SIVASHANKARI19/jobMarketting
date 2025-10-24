@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { Upload, FileText, ExternalLink, CheckCircle } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-
+import PropTypes from 'prop-types';
 const ResumeUpload = ({ onResumeUpload, isLoading }) => {
   const [file, setFile] = useState(null);
 

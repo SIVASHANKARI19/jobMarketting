@@ -6,7 +6,7 @@ import LearningRecommendations from '../../components/SkillGap/LearningRecomment
 import  {generateMockAnalysis} from '../../utils/mockData';
 // CourseRecommendationsGrid is available on its own page; use LearningRecommendations component below
 
-function App() {
+function SkillGap() {
   const [currentResume, setCurrentResume] = useState(null);
   const [analysisResult, setAnalysisResult] = useState(generateMockAnalysis());
 
