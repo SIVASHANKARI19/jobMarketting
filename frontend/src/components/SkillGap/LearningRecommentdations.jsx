@@ -1,69 +1,11 @@
 import React from 'react';
-import { BookOpen, Award, Clock, Star, ExternalLink, TrendingUp } from 'lucide-react';
+import { BookOpen, TrendingUp } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import CourseRecommendationsGrid from './CourseRecommendationsGrid';
+import priorityRecommendations from './courseData';
 
 const LearningRecommendations = () => {
-  const priorityRecommendations = [
-    {
-      title: 'Advanced React Development',
-      provider: 'Meta (Facebook)',
-      url: 'https://coursera.org/react-advanced',
-      certification: true,
-      duration: '8 weeks',
-      rating: 4.8,
-      category: 'Frontend',
-      priority: 'high'
-    },
-    {
-      title: 'Node.js Backend Development',
-      provider: 'IBM',
-      url: 'https://coursera.org/nodejs',
-      certification: true,
-      duration: '6 weeks',
-      rating: 4.7,
-      category: 'Backend',
-      priority: 'high'
-    },
-    {
-      title: 'Python for Data Science',
-      provider: 'Microsoft',
-      url: 'https://edx.org/python-data-science',
-      certification: true,
-      duration: '10 weeks',
-      rating: 4.6,
-      category: 'Data Science',
-      priority: 'medium'
-    },
-    {
-      title: 'AWS Cloud Practitioner',
-      provider: 'Amazon Web Services',
-      url: 'https://aws.amazon.com/training',
-      certification: true,
-      duration: '4 weeks',
-      rating: 4.9,
-      category: 'Cloud',
-      priority: 'high'
-    },
-    {
-      title: 'SQL Database Management',
-      provider: 'Oracle',
-      url: 'https://university.oracle.com/sql',
-      certification: true,
-      duration: '5 weeks',
-      rating: 4.5,
-      category: 'Database',
-      priority: 'medium'
-    },
-    {
-      title: 'DevOps Fundamentals',
-      provider: 'Red Hat',
-      url: 'https://redhat.com/devops-course',
-      certification: true,
-      duration: '12 weeks',
-      rating: 4.4,
-      category: 'DevOps',
-      priority: 'low'
-    }
-  ];
+  // priorityRecommendations moved to shared `courseData` and imported
 
   const getPriorityColor = (priority) => {
     switch (priority) {
@@ -93,6 +35,11 @@ const LearningRecommendations = () => {
         <p className="text-lg text-gray-600 max-w-3xl mx-auto">
           Personalized course recommendations to close your skill gaps and advance your career
         </p>
+        <div className="mt-4">
+          <Link to="/courses" className="inline-flex items-center px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors text-sm">
+            View all course recommendations
+          </Link>
+        </div>
       </div>
 
       {/* Priority Skills Section */}
@@ -112,64 +59,6 @@ const LearningRecommendations = () => {
         </div>
       </div>
 
-      {/* Course Recommendations Grid */}
-      <div className="grid lg:grid-cols-2 gap-6 mb-8">
-        {priorityRecommendations.map((course, index) => (
-          <div key={index} className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-shadow">
-            <div className="p-6">
-              <div className="flex items-start justify-between mb-4">
-                <div className="flex items-center space-x-3">
-                  <div className="text-2xl">{getCategoryIcon(course.category)}</div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-1">{course.title}</h3>
-                    <p className="text-gray-600 text-sm">{course.provider}</p>
-                  </div>
-                </div>
-                <span className={`px-2 py-1 rounded-full text-xs font-medium ${getPriorityColor(course.priority)}`}>
-                  {course.priority} priority
-                </span>
-              </div>
-
-              <div className="grid grid-cols-2 gap-4 mb-4">
-                <div className="flex items-center space-x-2 text-sm text-gray-600">
-                  <Clock className="h-4 w-4" />
-                  <span>{course.duration}</span>
-                </div>
-                <div className="flex items-center space-x-2 text-sm text-gray-600">
-                  <Star className="h-4 w-4 text-yellow-500" />
-                  <span>{course.rating}/5.0</span>
-                </div>
-              </div>
-
-              {course.certification && (
-                <div className="flex items-center space-x-2 mb-4">
-                  <Award className="h-4 w-4 text-blue-600" />
-                  <span className="text-sm text-blue-600 font-medium">Professional Certificate Included</span>
-                </div>
-              )}
-
-              <button 
-                onClick={() => window.open(course.url, '_blank')}
-                className="w-full bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors flex items-center justify-center space-x-2"
-              >
-                <span>Start Learning</span>
-                <ExternalLink className="h-4 w-4" />
-              </button>
-            </div>
-
-            <div className="bg-gray-50 px-6 py-3">
-              <div className="flex items-center justify-between text-sm">
-                <span className="text-gray-600">Career Impact:</span>
-                <span className="font-medium text-gray-900">
-                  {course.priority === 'high' ? '+15% salary potential' : 
-                   course.priority === 'medium' ? '+10% salary potential' : 
-                   '+5% salary potential'}
-                </span>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
 
       {/* Learning Path */}
       <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-6">

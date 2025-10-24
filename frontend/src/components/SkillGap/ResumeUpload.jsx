@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { Upload, FileText, ExternalLink, CheckCircle } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const ResumeUpload = ({ onResumeUpload }) => {
   const [dragActive, setDragActive] = useState(false);
@@ -33,6 +34,8 @@ const ResumeUpload = ({ onResumeUpload }) => {
     }
   };
 
+  const navigate = useNavigate();
+
   const handleFile = (file) => {
     setFileName(file.name);
     setUploadStatus('uploading');
@@ -60,15 +63,10 @@ const ResumeUpload = ({ onResumeUpload }) => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto">
-      <div className="text-center mb-8">
-        <h2 className="text-3xl font-bold text-gray-900 mb-4">Upload Your Resume</h2>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          Upload your existing resume or create a new ATS-optimized resume using our builder
-        </p>
-      </div>
+    <div className="max-w-5xl mx-20 ">
+      
 
-      <div className="grid md:grid-cols-2 gap-8 mb-8">
+      <div className="grid md:grid-cols-2 gap-20 mb-8 ">
         {/* Upload Option */}
         <div className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
           <div className="p-6">
@@ -155,7 +153,7 @@ const ResumeUpload = ({ onResumeUpload }) => {
               </div>
               
               <button
-                onClick={() => window.open('/resume-builder', '_blank')}
+                onClick={() => navigate ("/resume")}
                 className="w-full bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors flex items-center justify-center space-x-2"
               >
                 <span>Launch Resume Builder</span>
