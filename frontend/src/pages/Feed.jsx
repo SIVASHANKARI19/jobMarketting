@@ -9,9 +9,38 @@ import companiesData from '../data/companies.json';
 import JobDialog from "../components/DialogBox";
 const FeedPage = () => {
 const [jobs, setJobs] = useState(jobsData);
+const images = [
+  "https://images.unsplash.com/photo-1517430816045-df4b7de11d1d?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y29tcHV0ZXJzfGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=600",
+  "https://plus.unsplash.com/premium_photo-1678566154673-a728037f3f00?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8Y29tcHV0ZXJzfGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=600",
+  "https://images.unsplash.com/photo-1580920461931-fcb03a940df5?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGNvbXB1dGVyc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=600",
+  "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGNvbXB1dGVyc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=600",
+  "https://media.istockphoto.com/id/2209114464/photo/business-performance-checklist-businessman-using-laptop-online-survey-filling-out-check.webp?a=1&b=1&s=612x612&w=0&k=20&c=cgixNCC0DpueQNtPTW60c4G-rh3gfjMylqzjAK9xOJA=",
+  "https://images.unsplash.com/photo-1453928582365-b6ad33cbcf64?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjZ8fGNvbXB1dGVyc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=600",
+  "https://images.unsplash.com/photo-1596725858508-70543890c732?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzV8fGNvbXB1dGVyc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=600",
+  "https://images.unsplash.com/photo-1485988412941-77a35537dae4?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDN8fGNvbXB1dGVyc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=600",
+  "https://images.unsplash.com/photo-1627281795244-0f5db916344a?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTJ8fGNvbXB1dGVyc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=600",
+  "https://images.unsplash.com/photo-1560762484-813fc97650a0?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTl8fGNvbXB1dGVyc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=600",
+]
 
     const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+ const fetchTechImages = async () => {
+    try {
+      const response = await fetch(
+        "https://pixabay.com/api/?key=23586022-3b2b9a4e5e6e5f6e5f6e5f6e5f6e5f6e&q=technology&image_type=photo&per_page=50"
+      );
+      const data = await response.json();
+      setImages(data.hits);
+    } catch (err) {
+      console.error("Failed to fetch images:", err);
+    }
+  };
+
+  useEffect(() => {
+    fetchTechImages();
+  }, []);
+
   const [followStates, setFollowStates] = useState({});
   const [companies] = useState(companiesData);
   const [filters, setFilters] = useState({
@@ -61,6 +90,8 @@ const [jobs, setJobs] = useState(jobsData);
       (!filters.type || job.type === filters.type)
     );
   });
+
+
 
   const trendingCompanies = companies.slice(0, 5);
     useEffect(() => {
@@ -175,6 +206,7 @@ const [jobs, setJobs] = useState(jobsData);
               
                {filteredJobs.map((job ,index) => {
           const company = companies.find((c) => c.id === job.companyId);
+          const img = images[index % images.length];
           return (
             <div key={job.id} className="bg-white rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl group transition-all">
               {/* Card content same as before */}
@@ -182,12 +214,13 @@ const [jobs, setJobs] = useState(jobsData);
                 {/* Top Section */}
                 <div className="flex items-start justify-between">
                   <div className="flex items-start space-x-6">
-                   <img
-      src={`https://picsum.photos/id/${(index% 1000) + 1}/400/400`}
-      alt={job.title}
-      className="w-40 h-40 rounded-2xl object-cover border-2 border-gray-100"
-      onError={(e) => (e.target.src = "https://picsum.photos/400/400")}
-    />
+ <img
+              src={img}
+              alt="Tech Image"
+              className="w-40 h-40 rounded-2xl object-cover border-2 border-gray-100"
+              onError={(e) => (e.target.src = "https://via.placeholder.com/400")}
+            />
+
 
 
                     <div>
